@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 类型转换 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 数据类型检测</h1>
+
+  <div class="note">
+    <h3>JavaScript 数据类型</h3>
+    <ul>
+      <li>6种基本数据类型:
+        <ul>
+          <li>string</li>
+          <li>number</li>
+          <li>boolean</li>
+          <li>object</li>
+          <li>function</li>
+          <li>symbol</li>
+        </ul>
+      </li>
+      <li>3种对象类型:
+        <ul>
+          <li>Object</li>
+          <li>Date</li>
+          <li>Array</li>
+        </ul>
+      </li>
+      <li>2种无值类型:
+        <ul>
+          <li>null</li>
+          <li>undefined</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>类型检测示例</h2>
+  <pre>
+// 1. 基本数据类型检测
+const str = "Hello";
+const num = 123;
+const bool = true;
+const sym = Symbol();
+const func = function() {};
+const obj = {};
+
+// 2. 对象类型检测
+const arr = [1, 2, 3];
+const date = new Date();
+
+// 3. 无值类型检测
+const empty = null;
+const notDefined = undefined;
+
+// 检测函数
+function getType(value) {
+  if (value === null) return "null";
+  if (Array.isArray(value)) return "array";
+  if (value instanceof Date) return "date";
+  return typeof value;
+}
+    </pre>
+
+  <script>
+    // 1. 基本数据类型检测
+    const str = "Hello";
+    const num = 123;
+    const bool = true;
+    const sym = Symbol();
+    const func = function () { };
+    const obj = {};
+
+    // 2. 对象类型检测
+    const arr = [1, 2, 3];
+    const date = new Date();
+
+    // 3. 无值类型检测
+    const empty = null;
+    const notDefined = undefined;
+
+    // 检测函数
+    function getType(value) {
+      if (value === null) return "null";
+      if (Array.isArray(value)) return "array";
+      if (value instanceof Date) return "date";
+      return typeof value;
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>基本数据类型</h3>
+                <p>字符串: ${getType(str)}</p>
+                <p>数字: ${getType(num)}</p>
+                <p>布尔值: ${getType(bool)}</p>
+                <p>Symbol: ${getType(sym)}</p>
+                <p>函数: ${getType(func)}</p>
+                <p>对象: ${getType(obj)}</p>
+            </div>
+            <div class="output-box">
+                <h3>对象类型</h3>
+                <p>数组: ${getType(arr)}</p>
+                <p>日期对象: ${getType(date)}</p>
+            </div>
+            <div class="output-box">
+                <h3>无值类型</h3>
+                <p>null: ${getType(empty)}</p>
+                <p>undefined: ${getType(notDefined)}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 数组方法 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 数组方法</h1>
+
+  <div class="note">
+    <h3>数组方法注意事项</h3>
+    <ul>
+      <li>修改原数组的方法
+        <ul>
+          <li>push/pop - 尾部添加/删除</li>
+          <li>shift/unshift - 头部添加/删除</li>
+          <li>splice - 删除/替换元素</li>
+          <li>sort/reverse - 排序/反转</li>
+        </ul>
+      </li>
+      <li>不修改原数组的方法
+        <ul>
+          <li>concat - 合并数组</li>
+          <li>slice - 截取子数组</li>
+          <li>join - 连接为字符串</li>
+        </ul>
+      </li>
+      <li>迭代方法
+        <ul>
+          <li>forEach - 遍历执行</li>
+          <li>map - 映射新数组</li>
+          <li>filter - 过滤元素</li>
+          <li>reduce - 累计计算</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>数组方法示例</h2>
+  <pre>
+// 1. 修改原数组的方法
+const arr1 = [1, 2, 3];
+arr1.push(4); // [1, 2, 3, 4]
+arr1.pop();   // [1, 2, 3]
+arr1.unshift(0); // [0, 1, 2, 3]
+arr1.shift();    // [1, 2, 3]
+arr1.splice(1, 1, 'a'); // [1, 'a', 3]
+arr1.sort(); // [1, 3, 'a']
+
+// 2. 不修改原数组的方法
+const arr2 = [1, 2];
+const arr3 = arr2.concat([3, 4]); // [1, 2, 3, 4]
+const arr4 = arr3.slice(1, 3);    // [2, 3]
+const str = arr4.join('-');       // "2-3"
+
+// 3. 迭代方法
+const numbers = [1, 2, 3];
+numbers.forEach(n => console.log(n));
+const doubled = numbers.map(n => n * 2); // [2, 4, 6]
+const evens = numbers.filter(n => n % 2 === 0); // [2]
+const sum = numbers.reduce((acc, n) => acc + n, 0); // 6
+    </pre>
+
+  <script>
+    // 1. 修改原数组的方法
+    const arr1 = [1, 2, 3];
+    arr1.push(4);
+    const afterPush = [...arr1];
+    arr1.pop();
+    const afterPop = [...arr1];
+    arr1.unshift(0);
+    const afterUnshift = [...arr1];
+    arr1.shift();
+    const afterShift = [...arr1];
+    arr1.splice(1, 1, 'a');
+    const afterSplice = [...arr1];
+    arr1.sort();
+    const afterSort = [...arr1];
+
+    // 2. 不修改原数组的方法
+    const arr2 = [1, 2];
+    const arr3 = arr2.concat([3, 4]);
+    const arr4 = arr3.slice(1, 3);
+    const str = arr4.join('-');
+
+    // 3. 迭代方法
+    const numbers = [1, 2, 3];
+    let forEachResult = [];
+    numbers.forEach(n => forEachResult.push(n));
+    const doubled = numbers.map(n => n * 2);
+    const evens = numbers.filter(n => n % 2 === 0);
+    const sum = numbers.reduce((acc, n) => acc + n, 0);
+
+    document.write(`
+            <div class="output-box">
+                <h3>修改原数组的方法</h3>
+                <p>push后: ${JSON.stringify(afterPush)}</p>
+                <p>pop后: ${JSON.stringify(afterPop)}</p>
+                <p>unshift后: ${JSON.stringify(afterUnshift)}</p>
+                <p>shift后: ${JSON.stringify(afterShift)}</p>
+                <p>splice后: ${JSON.stringify(afterSplice)}</p>
+                <p>sort后: ${JSON.stringify(afterSort)}</p>
+            </div>
+            <div class="output-box">
+                <h3>不修改原数组的方法</h3>
+                <p>concat结果: ${JSON.stringify(arr3)}</p>
+                <p>slice结果: ${JSON.stringify(arr4)}</p>
+                <p>join结果: "${str}"</p>
+            </div>
+            <div class="output-box">
+                <h3>迭代方法</h3>
+                <p>forEach结果: ${forEachResult.join(', ')}</p>
+                <p>map结果: ${JSON.stringify(doubled)}</p>
+                <p>filter结果: ${JSON.stringify(evens)}</p>
+                <p>reduce结果: ${sum}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

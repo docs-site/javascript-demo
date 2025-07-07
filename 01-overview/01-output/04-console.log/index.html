@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>我的第一个 Web 页面</h1>
+	<p>点击按钮在控制台打印计算结果：</p>
+	<button onclick="logCalculation()">打印结果</button>
+	<p id="result"></p>
+
+	<script>
+		function logCalculation() {
+			const a = 5;
+			const b = 6;
+			const c = a + b;
+			
+			console.log('计算结果:', c);
+			document.getElementById('result').innerHTML = 
+				`已在控制台打印: ${a} + ${b} = ${c}`;
+		}
+	</script>
+</body>
+</html>

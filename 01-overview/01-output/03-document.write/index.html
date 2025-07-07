@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>我的第一个 Web 页面</h1>
+	<p>我的第一个段落。</p>
+	<button onclick="showDate()">显示日期</button>
+	<p id="output"></p>
+	
+	<script>
+		document.write("页面加载时间: " + Date());
+		
+		function showDate() {
+			document.getElementById('output').innerHTML = "按钮点击时间: " + Date();
+		}
+	</script>
+</body>
+</html>

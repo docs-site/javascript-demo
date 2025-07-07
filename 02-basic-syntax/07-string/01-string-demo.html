@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript String Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript String Basics</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>字符串可以用单引号(')或双引号(")定义</li>
+      <li>ES6引入了模板字符串(``)，支持多行字符串和变量插值</li>
+      <li>字符串是不可变的，任何操作都会返回新字符串</li>
+      <li>常用输出方法：console.log(), document.write(), window.alert()</li>
+    </ul>
+  </div>
+
+  <h2>字符串定义示例</h2>
+  <pre>
+// 单引号字符串
+const str1 = 'Hello World';
+
+// 双引号字符串 
+const str2 = "Hello JavaScript";
+
+// 模板字符串
+const name = 'Alice';
+const str3 = `Hello ${name}`;
+    </pre>
+
+  <h2>字符串输出示例</h2>
+  <pre>
+// 控制台输出
+console.log(str1); // Hello World
+
+// 页面输出
+document.write(str2); // Hello JavaScript
+
+// 弹窗输出
+window.alert(str3); // Hello Alice
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const str1 = 'Hello World';
+    const str2 = "Hello JavaScript";
+    const name = 'Alice';
+    const str3 = `Hello ${name}`;
+
+    console.log(str1);
+    document.write(`<p>${str2}</p>`);
+    // window.alert(str3); // 注释掉避免页面加载时弹出
+  </script>
+</body>
+
+</html>

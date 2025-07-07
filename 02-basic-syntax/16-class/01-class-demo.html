@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript 类基本语法</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript 类基本语法</h1>
+
+  <div class="note">
+    <h3>类基本概念</h3>
+    <ul>
+      <li>类是创建对象的模板</li>
+      <li>使用 class 关键字定义</li>
+      <li>包含：
+        <ul>
+          <li>构造函数(constructor)</li>
+          <li>实例方法</li>
+        </ul>
+      </li>
+      <li>使用 new 关键字创建实例</li>
+    </ul>
+  </div>
+
+  <h2>类基本用法</h2>
+  
+  <div>
+    <button onclick="showBasicClass()">基本类</button>
+    <button onclick="showConstructor()">构造函数</button>
+    <button onclick="showMethods()">实例方法</button>
+    <button onclick="showInheritance()">继承</button>
+  </div>
+
+  <div id="output" class="output-box">
+    <h3 id="current-demo-title">请点击上方按钮查看类的基本用法</h3>
+    <div id="output-content"></div>
+  </div>
+
+  <pre id="code-example"><code>// 点击按钮查看代码示例</code></pre>
+
+  <script>
+    // 基本类
+    function showBasicClass() {
+      document.getElementById('current-demo-title').textContent = '基本类语法';
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+      
+      const person = new Person('张三');
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>基本类语法</h4>
+          <ul>
+            <li>使用 class 关键字定义类</li>
+            <li>类名通常首字母大写</li>
+            <li>验证结果: person.name → ${person.name}</li>
+            <li>typeof Person → ${typeof Person}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+const person = new Person('张三');</code>`;
+    }
+
+    // 构造函数
+    function showConstructor() {
+      document.getElementById('current-demo-title').textContent = '构造函数';
+      class Car {
+        constructor(brand, year) {
+          this.brand = brand;
+          this.year = year;
+        }
+      }
+      
+      const car = new Car('Toyota', 2020);
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>构造函数</h4>
+          <ul>
+            <li>constructor 是类的特殊方法</li>
+            <li>创建实例时自动调用</li>
+            <li>用于初始化对象属性</li>
+            <li>验证结果: car.brand → ${car.brand}</li>
+            <li>car.year → ${car.year}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>class Car {
+  constructor(brand, year) {
+    this.brand = brand;
+    this.year = year;
+  }
+}
+
+const car = new Car('Toyota', 2020);</code>`;
+    }
+
+    // 实例方法
+    function showMethods() {
+      document.getElementById('current-demo-title').textContent = '实例方法';
+      class Calculator {
+        add(a, b) {
+          return a + b;
+        }
+      }
+      
+      const calc = new Calculator();
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>实例方法</h4>
+          <ul>
+            <li>定义在类中的方法</li>
+            <li>通过实例调用</li>
+            <li>验证结果: calc.add(2,3) → ${calc.add(2,3)}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>class Calculator {
+  add(a, b) {
+    return a + b;
+  }
+}
+
+const calc = new Calculator();
+calc.add(2, 3);</code>`;
+    }
+
+    // 继承
+    function showInheritance() {
+      document.getElementById('current-demo-title').textContent = '继承(extends)';
+      class Animal {
+        constructor(name) {
+          this.name = name;
+        }
+        
+        speak() {
+          return `${this.name} makes a noise`;
+        }
+      }
+      
+      class Dog extends Animal {
+        speak() {
+          return `${this.name} barks`;
+        }
+      }
+      
+      const dog = new Dog('Rex');
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>继承</h4>
+          <ul>
+            <li>使用 extends 实现继承</li>
+            <li>子类继承父类的方法</li>
+            <li>可以重写父类方法</li>
+            <li>验证结果: dog.speak() → ${dog.speak()}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    return \`\${this.name} makes a noise\`;
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return \`\${this.name} barks\`;
+  }
+}
+
+const dog = new Dog('Rex');
+dog.speak();</code>`;
+    }
+  </script>
+</body>
+</html>

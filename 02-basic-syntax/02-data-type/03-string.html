@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 字符串引号演示</title>
+</head>
+
+<body>
+  <h1>JavaScript 字符串引号演示</h1>
+
+  <p>JavaScript字符串可以用单引号或双引号表示，并且可以互相嵌套。</p>
+  <p>使用反斜杠(\)可以转义特殊字符。</p>
+  
+  <button onclick="showStringExamples()">显示字符串示例</button>
+  <div id="result"></div>
+  
+  <script>
+    function showStringExamples() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      
+      // 单引号字符串
+      const singleQuote = '这是一个单引号字符串';
+      resultDiv.innerHTML += `单引号: ${singleQuote}<br>`;
+      
+      // 双引号字符串
+      const doubleQuote = "这是一个双引号字符串";
+      resultDiv.innerHTML += `双引号: ${doubleQuote}<br>`;
+      
+      // 双引号内嵌套单引号
+      const nestedSingle = "双引号内可以包含'单引号'";
+      resultDiv.innerHTML += `嵌套单引号: ${nestedSingle}<br>`;
+      
+      // 单引号内嵌套双引号
+      const nestedDouble = '单引号内可以包含"双引号"';
+      resultDiv.innerHTML += `嵌套双引号: ${nestedDouble}<br>`;
+      
+      // 转义字符
+      const escaped = '使用\\"转义\\"双引号';
+      resultDiv.innerHTML += `转义字符: ${escaped}<br>`;
+      
+      // 模板字符串
+      const template = `反引号字符串可以
+跨行和使用${"变量"}`;
+      resultDiv.innerHTML += `模板字符串: ${template}`;
+    }
+  </script>
+</body>
+
+</html>

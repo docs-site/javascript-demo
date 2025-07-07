@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript let Demo</title>
+</head>
+
+<body>
+  <h1>JavaScript let Demo</h1>
+
+  <p>在 2015 年以前，我们使用 var 关键字来声明 JavaScript 变量。在 2015 后的 JavaScript 版本 (ES6) 允许我们使用 const 关键字来定义一个常量，使用 let
+    关键字定义的限定范围内作用域的变量。</p>
+  <p>let 是 ES6 引入的新变量声明方式，推荐使用。let的特点：</p>
+  <p>1.let是ES6引入的块级作用域变量声明方式，相比var具有更严格的作用域规则。</p>
+  <p>2.let声明的变量只在它所在的代码块内有效，不存在变量提升，且不能重复声明。</p>
+
+  <button onclick="showResult()">显示结果</button>
+  <div id="result"></div>
+
+  <script>
+    let a = 10;
+    let b = 20;
+    let c = a + b;
+
+    function showResult() {
+      let resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = a + " + " + b + " = " + c;
+    }
+  </script>
+</body>
+
+</html>

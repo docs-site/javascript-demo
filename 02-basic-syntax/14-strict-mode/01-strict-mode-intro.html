@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 严格模式介绍</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 严格模式 (Strict Mode)</h1>
+
+  <div class="note">
+    <h3>严格模式</h3>
+    <p>严格模式是 ECMAScript 5 引入的一种限制性 JavaScript 变体，它改变了某些行为的处理方式，使代码更安全、更优化。</p>
+  </div>
+
+  <h2>启用严格模式</h2>
+  <div class="output-box">
+    <h3>全局启用</h3>
+    <pre><code>"use strict";
+// 整个脚本文件将使用严格模式</code></pre>
+
+    <h3>函数内启用</h3>
+    <pre><code>function strictFunction() {
+  "use strict";
+  // 函数内使用严格模式
+}</code></pre>
+  </div>
+
+  <h2>严格模式的主要变化</h2>
+
+  <div class="output-box">
+    <h3>1. 变量声明</h3>
+    <ul>
+      <li>必须使用 <code>var</code>, <code>let</code> 或 <code>const</code> 声明变量</li>
+      <li>意外创建全局变量会导致错误</li>
+    </ul>
+  </div>
+
+  <div class="output-box">
+    <h3>2. 静默错误变为抛出错误</h3>
+    <ul>
+      <li>给不可写属性赋值</li>
+      <li>删除不可删除的属性</li>
+      <li>函数参数重名</li>
+      <li>八进制数字语法 (如 0123)</li>
+    </ul>
+  </div>
+
+  <div class="output-box">
+    <h3>3. 安全性改进</h3>
+    <ul>
+      <li><code>eval</code> 和 <code>arguments</code> 不能作为变量名</li>
+      <li><code>eval</code> 不会在包含上下文中引入新变量</li>
+      <li><code>arguments</code> 不再与形参绑定</li>
+    </ul>
+  </div>
+
+  <div class="output-box">
+    <h3>4. 未来保留字</h3>
+    <p>以下保留字不能用作变量名：</p>
+    <code>implements, interface, let, package, private, protected, public, static, yield</code>
+  </div>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>严格模式与非严格模式可以共存</li>
+      <li>严格模式代码和非严格模式代码可以合并</li>
+      <li>建议新项目全部使用严格模式</li>
+      <li>旧代码迁移到严格模式需要测试兼容性</li>
+    </ul>
+  </div>
+
+  <h2>为什么使用严格模式？</h2>
+  <ul>
+    <li>消除 JavaScript 的一些不合理、不严谨之处</li>
+    <li>减少一些怪异行为</li>
+    <li>提高编译器效率，增加运行速度</li>
+    <li>为未来新版本的 JavaScript 做好铺垫</li>
+  </ul>
+</body>
+
+</html>

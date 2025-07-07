@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript函数表达式</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .note {
+            background: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffd600;
+            margin: 20px 0;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+
+        button:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript函数表达式演示</h1>
+    
+    <div class="note">
+        <h3>函数表达式特点</h3>
+        <ul>
+            <li>函数表达式是将函数赋值给变量的形式</li>
+            <li>与函数声明不同，函数表达式不会提升</li>
+            <li>基本函数表达式是最常用的形式</li>
+        </ul>
+    </div>
+
+    <button onclick="showDemo()">运行示例</button>
+    <div id="output" class="output-box">
+        <h3 id="demo-title">点击按钮查看函数表达式示例</h3>
+        <div id="output-content"></div>
+    </div>
+
+    <script>
+        function showDemo() {
+            // 1. 基本函数表达式
+            const greet = function(name) {
+                return `你好，${name}！`;
+            };
+            
+            // 2. 显示结果
+            const outputDiv = document.getElementById('output-content');
+            outputDiv.innerHTML = `
+                <h4>函数表达式调用结果:</h4>
+                <p>${greet('李四')}</p>
+            `;
+            
+            document.getElementById('demo-title').textContent = '函数表达式示例结果';
+            
+            // 3. 控制台输出
+            console.log('函数表达式:', greet);
+        }
+    </script>
+</body>
+</html>

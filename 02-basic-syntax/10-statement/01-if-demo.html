@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript if语句 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript if语句</h1>
+
+  <div class="note">
+    <h3>if语句注意事项</h3>
+    <ul>
+      <li>基本语法
+        <ul>
+          <li>if (条件) { 代码块 }</li>
+          <li>if (条件) { 代码块 } else { 代码块 }</li>
+          <li>if (条件) { 代码块 } else if (条件) { 代码块 } else { 代码块 }</li>
+        </ul>
+      </li>
+      <li>条件转换规则
+        <ul>
+          <li>0、""、null、undefined、NaN → false</li>
+          <li>其他值 → true</li>
+        </ul>
+      </li>
+      <li>最佳实践
+        <ul>
+          <li>使用严格比较(===)避免类型转换问题</li>
+          <li>复杂条件使用括号明确优先级</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>if语句示例</h2>
+  <pre>
+// 1. 基本if语句
+const age = 18;
+if (age >= 18) {
+    console.log("成年人");  // 会执行
+}
+
+// 2. if-else语句
+const score = 59;
+if (score >= 60) {
+    console.log("及格");
+} else {
+    console.log("不及格");  // 会执行
+}
+
+// 3. 多条件判断
+const temperature = 25;
+if (temperature > 30) {
+    console.log("炎热");
+} else if (temperature > 20) {
+    console.log("温暖");  // 会执行
+} else if (temperature > 10) {
+    console.log("凉爽");
+} else {
+    console.log("寒冷");
+}
+
+// 4. 条件转换示例
+const name = "";
+if (name) {
+    console.log("名字存在");
+} else {
+    console.log("名字为空");  // 会执行
+}
+    </pre>
+
+  <script>
+    // 1. 基本if语句
+    const age = 18;
+    let ageResult = "";
+    if (age >= 18) {
+      ageResult = "成年人";
+    }
+
+    // 2. if-else语句
+    const score = 59;
+    let scoreResult;
+    if (score >= 60) {
+      scoreResult = "及格";
+    } else {
+      scoreResult = "不及格";
+    }
+
+    // 3. 多条件判断
+    const temperature = 25;
+    let tempDesc;
+    if (temperature > 30) {
+      tempDesc = "炎热";
+    } else if (temperature > 20) {
+      tempDesc = "温暖";
+    } else if (temperature > 10) {
+      tempDesc = "凉爽";
+    } else {
+      tempDesc = "寒冷";
+    }
+
+    // 4. 条件转换示例
+    const name = "";
+    let nameCheck = name ? "名字存在" : "名字为空";
+
+    document.write(`
+            <div class="output-box">
+                <h3>基本if语句结果</h3>
+                <p>年龄${age}: ${ageResult || "未满足条件"}</p>
+            </div>
+            <div class="output-box">
+                <h3>if-else语句结果</h3>
+                <p>分数${score}: ${scoreResult}</p>
+            </div>
+            <div class="output-box">
+                <h3>多条件判断结果</h3>
+                <p>温度${temperature}°C: ${tempDesc}</p>
+            </div>
+            <div class="output-box">
+                <h3>条件转换结果</h3>
+                <p>名字检查: ${nameCheck}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

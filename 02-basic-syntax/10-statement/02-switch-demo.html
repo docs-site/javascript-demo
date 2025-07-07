@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript switch语句 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript switch语句</h1>
+
+  <div class="note">
+    <h3>switch语句注意事项</h3>
+    <ul>
+      <li>基本语法
+        <ul>
+          <li>switch(表达式) { case 值: 代码块; break; ... default: 代码块 }</li>
+          <li>使用严格相等(===)比较</li>
+        </ul>
+      </li>
+      <li>break语句
+        <ul>
+          <li>每个case需要break，否则会继续执行下一个case</li>
+          <li>故意省略break可实现多个case共用代码</li>
+        </ul>
+      </li>
+      <li>default分支
+        <ul>
+          <li>当所有case都不匹配时执行</li>
+          <li>可以放在任意位置，但通常放在最后</li>
+        </ul>
+      </li>
+      <li>最佳实践
+        <ul>
+          <li>简单值比较时比if-else更清晰</li>
+          <li>处理枚举值时特别有用</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>switch语句示例</h2>
+  <pre>
+// 1. 基本switch语句
+const day = 3;
+switch (day) {
+    case 1:
+        console.log("星期一");
+        break;
+    case 2:
+        console.log("星期二");
+        break;
+    case 3:
+        console.log("星期三");  // 会执行
+        break;
+    default:
+        console.log("未知");
+}
+
+// 2. 共用代码的case
+const month = 2;
+switch (month) {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        console.log("31天");  // 会执行
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        console.log("30天");
+        break;
+    case 2:
+        console.log("28或29天");
+        break;
+}
+
+// 3. 字符串匹配
+const fruit = "apple";
+switch (fruit) {
+    case "banana":
+        console.log("香蕉");
+        break;
+    case "apple":
+        console.log("苹果");  // 会执行
+        break;
+    case "orange":
+        console.log("橙子");
+        break;
+}
+
+// 4. default示例
+const color = "purple";
+switch (color) {
+    case "red":
+        console.log("红色");
+        break;
+    case "blue":
+        console.log("蓝色");
+        break;
+    default:
+        console.log("其他颜色");  // 会执行
+}
+    </pre>
+
+  <script>
+    // 1. 基本switch语句
+    const day = 3;
+    let dayName;
+    switch (day) {
+      case 1:
+        dayName = "星期一";
+        break;
+      case 2:
+        dayName = "星期二";
+        break;
+      case 3:
+        dayName = "星期三";
+        break;
+      default:
+        dayName = "未知";
+    }
+
+    // 2. 共用代码的case
+    const month = 1;
+    let daysInMonth;
+    switch (month) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        daysInMonth = "31天";
+        break;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        daysInMonth = "30天";
+        break;
+      case 2:
+        daysInMonth = "28或29天";
+        break;
+    }
+
+    // 3. 字符串匹配
+    const fruit = "apple";
+    let fruitName;
+    switch (fruit) {
+      case "banana":
+        fruitName = "香蕉";
+        break;
+      case "apple":
+        fruitName = "苹果";
+        break;
+      case "orange":
+        fruitName = "橙子";
+        break;
+    }
+
+    // 4. default示例
+    const color = "purple";
+    let colorName;
+    switch (color) {
+      case "red":
+        colorName = "红色";
+        break;
+      case "blue":
+        colorName = "蓝色";
+        break;
+      default:
+        colorName = "其他颜色";
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>基本switch结果</h3>
+                <p>星期${day}: ${dayName}</p>
+            </div>
+            <div class="output-box">
+                <h3>月份天数结果</h3>
+                <p>${month}月: ${daysInMonth}</p>
+            </div>
+            <div class="output-box">
+                <h3>水果匹配结果</h3>
+                <p>${fruit}: ${fruitName}</p>
+            </div>
+            <div class="output-box">
+                <h3>颜色匹配结果</h3>
+                <p>${color}: ${colorName}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 字符串转数字 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 字符串转数字</h1>
+
+  <div class="note">
+    <h3>字符串转数字的方法</h3>
+    <ul>
+      <li>Number() 函数
+        <ul>
+          <li>严格转换，包含非数字字符返回NaN</li>
+          <li>空字符串转为0</li>
+        </ul>
+      </li>
+      <li>parseInt() 函数
+        <ul>
+          <li>解析整数，可指定进制</li>
+          <li>忽略字符串开头的空格</li>
+          <li>遇到非数字字符停止解析</li>
+        </ul>
+      </li>
+      <li>parseFloat() 函数
+        <ul>
+          <li>解析浮点数</li>
+          <li>只认第一个小数点</li>
+        </ul>
+      </li>
+      <li>一元加运算符 (+)
+        <ul>
+          <li>行为类似Number()</li>
+        </ul>
+      </li>
+      <li>数学运算隐式转换
+        <ul>
+          <li>通过数学运算自动转换</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>字符串转数字示例</h2>
+  <pre>
+// 测试字符串和日期
+const numStr = "123";
+const floatStr = "123.45";
+const hexStr = "0xff";
+const emptyStr = "";
+const spaceStr = "  123  ";
+const invalidStr = "123abc";
+const nonNumStr = "abc123";
+const dateStr = "2025-07-08";
+const dateTimeStr = "2025-07-08T09:24:40";
+const invalidDateStr = "2025-13-40";
+
+// 转换函数
+function convertWithNumber(str) {
+  // 尝试日期字符串转换
+  const date = new Date(str);
+  if (!isNaN(date.getTime())) {
+    return date.getTime();
+  }
+  
+  const result = Number(str);
+  return isNaN(result) ? "NaN" : result;
+}
+
+function convertWithParseInt(str) {
+  const result = parseInt(str, 10);
+  return isNaN(result) ? "NaN" : result;
+}
+
+function convertWithParseFloat(str) {
+  const result = parseFloat(str);
+  return isNaN(result) ? "NaN" : result;
+}
+
+function convertWithUnaryPlus(str) {
+  const result = +str;
+  return isNaN(result) ? "NaN" : result;
+}
+
+function convertWithMath(str) {
+  const result = str * 1;
+  return isNaN(result) ? "NaN" : result;
+}
+    </pre>
+
+  <script>
+    // 测试字符串和日期
+    const numStr = "123";
+    const floatStr = "123.45";
+    const hexStr = "0xff";
+    const emptyStr = "";
+    const spaceStr = "  123  ";
+    const invalidStr = "123abc";
+    const nonNumStr = "abc123";
+    const dateStr = "2025-07-08";
+    const dateTimeStr = "2025-07-08T09:24:40";
+    const invalidDateStr = "2025-13-40";
+
+    // 转换函数
+    function convertWithNumber(str) {
+      // 尝试日期字符串转换
+      const date = new Date(str);
+      if (!isNaN(date.getTime())) {
+        return date.getTime();
+      }
+      
+      const result = Number(str);
+      return isNaN(result) ? "NaN" : result;
+    }
+
+    function convertWithParseInt(str) {
+      const result = parseInt(str, 10);
+      return isNaN(result) ? "NaN" : result;
+    }
+
+    function convertWithParseFloat(str) {
+      const result = parseFloat(str);
+      return isNaN(result) ? "NaN" : result;
+    }
+
+    function convertWithUnaryPlus(str) {
+      const result = +str;
+      return isNaN(result) ? "NaN" : result;
+    }
+
+    function convertWithMath(str) {
+      const result = str * 1;
+      return isNaN(result) ? "NaN" : result;
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>Number() 转换</h3>
+                <p>"123": ${convertWithNumber(numStr)}</p>
+                <p>"123.45": ${convertWithNumber(floatStr)}</p>
+                <p>"0xff": ${convertWithNumber(hexStr)}</p>
+                <p>空字符串: ${convertWithNumber(emptyStr)}</p>
+                <p>"  123  ": ${convertWithNumber(spaceStr)}</p>
+                <p>"123abc": ${convertWithNumber(invalidStr)}</p>
+                <p>"abc123": ${convertWithNumber(nonNumStr)}</p>
+            </div>
+            <div class="output-box">
+                <h3>parseInt() 转换</h3>
+                <p>"123": ${convertWithParseInt(numStr)}</p>
+                <p>"123.45": ${convertWithParseInt(floatStr)}</p>
+                <p>"0xff": ${convertWithParseInt(hexStr)}</p>
+                <p>空字符串: ${convertWithParseInt(emptyStr)}</p>
+                <p>"  123  ": ${convertWithParseInt(spaceStr)}</p>
+                <p>"123abc": ${convertWithParseInt(invalidStr)}</p>
+                <p>"abc123": ${convertWithParseInt(nonNumStr)}</p>
+            </div>
+            <div class="output-box">
+                <h3>parseFloat() 转换</h3>
+                <p>"123": ${convertWithParseFloat(numStr)}</p>
+                <p>"123.45": ${convertWithParseFloat(floatStr)}</p>
+                <p>"0xff": ${convertWithParseFloat(hexStr)}</p>
+                <p>空字符串: ${convertWithParseFloat(emptyStr)}</p>
+                <p>"  123  ": ${convertWithParseFloat(spaceStr)}</p>
+                <p>"123abc": ${convertWithParseFloat(invalidStr)}</p>
+                <p>"abc123": ${convertWithParseFloat(nonNumStr)}</p>
+            </div>
+            <div class="output-box">
+                <h3>一元加运算符 (+) 转换</h3>
+                <p>"123": ${convertWithUnaryPlus(numStr)}</p>
+                <p>"123.45": ${convertWithUnaryPlus(floatStr)}</p>
+                <p>"0xff": ${convertWithUnaryPlus(hexStr)}</p>
+                <p>空字符串: ${convertWithUnaryPlus(emptyStr)}</p>
+                <p>"  123  ": ${convertWithUnaryPlus(spaceStr)}</p>
+                <p>"123abc": ${convertWithUnaryPlus(invalidStr)}</p>
+                <p>"abc123": ${convertWithUnaryPlus(nonNumStr)}</p>
+            </div>
+            <div class="output-box">
+                <h3>数学运算隐式转换</h3>
+                <p>"123" * 1: ${convertWithMath(numStr)}</p>
+                <p>"123.45" * 1: ${convertWithMath(floatStr)}</p>
+                <p>"0xff" * 1: ${convertWithMath(hexStr)}</p>
+                <p>空字符串 * 1: ${convertWithMath(emptyStr)}</p>
+                <p>"  123  " * 1: ${convertWithMath(spaceStr)}</p>
+                <p>"123abc" * 1: ${convertWithMath(invalidStr)}</p>
+                <p>"abc123" * 1: ${convertWithMath(nonNumStr)}</p>
+            </div>
+            <div class="output-box">
+                <h3>日期字符串转换</h3>
+                <p>"2025-07-08": ${convertWithNumber(dateStr)} (时间戳)</p>
+                <p>"2025-07-08T09:24:40": ${convertWithNumber(dateTimeStr)} (时间戳)</p>
+                <p>无效日期 "2025-13-40": ${convertWithNumber(invalidDateStr)}</p>
+                <p>new Date().getTime(): ${new Date().getTime()} (当前时间戳)</p>
+                <p>Date.now(): ${Date.now()} (当前时间戳)</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

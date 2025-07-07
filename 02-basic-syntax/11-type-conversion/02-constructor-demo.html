@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript constructor 属性 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript constructor 属性</h1>
+
+  <div class="note">
+    <h3>constructor 属性说明</h3>
+    <ul>
+      <li>constructor 属性返回对象的构造函数</li>
+      <li>具有 constructor 属性的数据类型:
+        <ul>
+          <li>String</li>
+          <li>Number</li>
+          <li>Boolean</li>
+          <li>Array</li>
+          <li>Object</li>
+          <li>Function</li>
+          <li>Date</li>
+          <li>RegExp</li>
+        </ul>
+      </li>
+      <li>没有 constructor 属性的数据类型:
+        <ul>
+          <li>null</li>
+          <li>undefined</li>
+          <li>Symbol (ES6)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>constructor 属性示例</h2>
+  <pre>
+// 1. 基本类型 (自动装箱后才有constructor)
+const str = "Hello";
+const num = 123;
+const bool = true;
+
+// 2. 对象类型
+const arr = [1, 2, 3];
+const obj = {};
+const func = function() {};
+const date = new Date();
+const regex = /abc/;
+
+// 3. 无constructor的类型
+const empty = null;
+const notDefined = undefined;
+const sym = Symbol();
+
+// 检测函数
+function getConstructor(value) {
+  if (value === null || value === undefined) {
+    return "无constructor属性";
+  }
+  try {
+    return value.constructor.name;
+  } catch (e) {
+    return "无constructor属性";
+  }
+}
+    </pre>
+
+  <script>
+    // 1. 基本类型 (自动装箱后才有constructor)
+    const str = "Hello";
+    const num = 123;
+    const bool = true;
+
+    // 2. 对象类型
+    const arr = [1, 2, 3];
+    const obj = {};
+    const func = function () { };
+    const date = new Date();
+    const regex = /abc/;
+
+    // 3. 无constructor的类型
+    const empty = null;
+    const notDefined = undefined;
+    const sym = Symbol();
+
+    // 检测函数
+    function getConstructor(value) {
+      if (value === null || value === undefined) {
+        return "无constructor属性";
+      }
+      try {
+        return value.constructor;
+      } catch (e) {
+        return "无constructor属性";
+      }
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>基本类型 (自动装箱后)</h3>
+                <p>字符串: ${getConstructor(str)}</p>
+                <p>数字: ${getConstructor(num)}</p>
+                <p>布尔值: ${getConstructor(bool)}</p>
+            </div>
+            <div class="output-box">
+                <h3>对象类型</h3>
+                <p>数组: ${getConstructor(arr)}</p>
+                <p>对象: ${getConstructor(obj)}</p>
+                <p>函数: ${getConstructor(func)}</p>
+                <p>日期对象: ${getConstructor(date)}</p>
+                <p>正则表达式: ${getConstructor(regex)}</p>
+            </div>
+            <div class="output-box">
+                <h3>无constructor属性的类型</h3>
+                <p>null: ${getConstructor(empty)}</p>
+                <p>undefined: ${getConstructor(notDefined)}</p>
+                <p>Symbol: ${getConstructor(sym)}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

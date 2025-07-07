@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JavaScript Operators Demo</title>
+</head>
+
+<body>
+	<h1>JavaScript Operators Demo</h1>
+
+	<h2>Arithmetic Operators</h2>
+	<p>5 + 3 = <span id="add"></span> <button onclick="calculate('add', 5 + 3)">Show</button></p>
+	<p>5 - 3 = <span id="subtract"></span> <button onclick="calculate('subtract', 5 - 3)">Show</button></p>
+	<p>5 * 3 = <span id="multiply"></span> <button onclick="calculate('multiply', 5 * 3)">Show</button></p>
+	<p>5 / 3 = <span id="divide"></span> <button onclick="calculate('divide', 5 / 3)">Show</button></p>
+	<p>5 % 3 = <span id="modulus"></span> <button onclick="calculate('modulus', 5 % 3)">Show</button></p>
+
+	<h2>Comparison Operators</h2>
+	<p>5 == '5' = <span id="looseEqual"></span> <button onclick="calculate('looseEqual', 5 == '5')">Show</button></p>
+	<p>5 === '5' = <span id="strictEqual"></span> <button onclick="calculate('strictEqual', 5 === '5')">Show</button></p>
+
+	<h2>Logical Operators</h2>
+	<p>true && false = <span id="and"></span> <button onclick="calculate('and', true && false)">Show</button></p>
+	<p>true || false = <span id="or"></span> <button onclick="calculate('or', true || false)">Show</button></p>
+
+	<script>
+		function calculate(id, result) {
+			document.getElementById(id).textContent = result;
+		}
+	</script>
+</body>
+
+</html>

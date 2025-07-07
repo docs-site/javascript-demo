@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 数组演示</title>
+</head>
+
+<body>
+  <h1>JavaScript 数组演示</h1>
+
+  <p>JavaScript数组是有序的数据集合，可以包含任意类型的数据。</p>
+  
+  <button onclick="showArrayExamples()">显示数组示例</button>
+  <div id="result"></div>
+  
+  <script>
+    function showArrayExamples() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      
+      // 一维数组
+      const fruits = ['Apple', 'Banana', 'Orange'];
+      resultDiv.innerHTML += `一维数组: ${fruits}<br>`;
+      resultDiv.innerHTML += `数组长度: ${fruits.length}<br>`;
+      resultDiv.innerHTML += `第一个元素: ${fruits[0]}<br>`;
+      
+      // 数组方法
+      fruits.push('Mango');
+      resultDiv.innerHTML += `push后: ${fruits}<br>`;
+      fruits.pop();
+      resultDiv.innerHTML += `pop后: ${fruits}<br>`;
+      resultDiv.innerHTML += `join结果: ${fruits.join(' - ')}<br>`;
+      
+      // 二维数组
+      const matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+      ];
+      resultDiv.innerHTML += `<br>二维数组:<br>`;
+      resultDiv.innerHTML += `matrix[1][1]: ${matrix[1][1]}<br>`;
+      
+      // 数组遍历
+      resultDiv.innerHTML += `<br>数组遍历:<br>`;
+      fruits.forEach((fruit, index) => {
+        resultDiv.innerHTML += `${index}: ${fruit}<br>`;
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript自调用函数(IIFE)演示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .note {
+            background: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffd600;
+            margin: 20px 0;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+
+        button:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript自调用函数(IIFE)演示</h1>
+    
+    <div class="note">
+        <h3>自调用函数(IIFE)特点</h3>
+        <ul>
+            <li>立即执行函数表达式在定义后立即执行</li>
+            <li>常用语法: (function(){...})() 或 !function(){...}()</li>
+            <li>主要用途:
+                <ul>
+                    <li>创建私有作用域，避免变量污染全局</li>
+                    <li>封装模块代码</li>
+                    <li>初始化一次性操作</li>
+                </ul>
+            </li>
+            <li>可以返回值和接收参数</li>
+        </ul>
+    </div>
+
+    <button onclick="showDemo()">运行示例</button>
+    <div id="output" class="output-box">
+        <h3 id="demo-title">点击按钮查看IIFE示例</h3>
+        <div id="output-content"></div>
+    </div>
+
+    <script>
+        function showDemo() {
+            // 1. 基本IIFE示例
+            const result = (function() {
+                const privateVar = '私有变量，外部无法访问';
+                return `IIFE返回值: ${privateVar}`;
+            })();
+            
+            // 2. 带参数的IIFE
+            const sum = (function(a, b) {
+                return a + b;
+            })(5, 3);
+            
+            // 3. 返回对象的IIFE
+            const counter = (function() {
+                let count = 0;
+                return {
+                    increment: function() { count++; },
+                    getCount: function() { return count; }
+                };
+            })();
+            counter.increment();
+            counter.increment();
+            
+            // 4. 显示结果
+            const outputDiv = document.getElementById('output-content');
+            outputDiv.innerHTML = `
+                <h4>基本IIFE结果:</h4>
+                <p>${result}</p>
+                
+                <h4>带参数IIFE结果:</h4>
+                <p>5 + 3 = ${sum}</p>
+                
+                <h4>返回对象的IIFE:</h4>
+                <p>计数器值: ${counter.getCount()}</p>
+            `;
+            
+            document.getElementById('demo-title').textContent = 'IIFE示例结果';
+            
+            // 5. 控制台输出
+            console.log('基本IIFE结果:', result);
+            console.log('带参数IIFE结果:', sum);
+            console.log('计数器对象:', counter);
+        }
+    </script>
+</body>
+</html>

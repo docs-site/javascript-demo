@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 参数(Parameters)与实参(Arguments)详解</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 参数(Parameters)与实参(Arguments)详解</h1>
+
+  <div class="note">
+    <h2>基本概念</h2>
+    <p><strong>形式参数(Parameters)</strong>：函数定义时声明的变量</p>
+    <p><strong>实际参数(Arguments)</strong>：函数调用时传入的具体值</p>
+    <p><strong>arguments对象</strong>：函数内部可用的类数组对象，包含所有传入参数</p>
+  </div>
+
+  <div class="section">
+    <h2>基础示例</h2>
+
+    <div class="example">
+      <h3>1. 基本参数传递</h3>
+      <pre>
+// 形式参数 a, b
+function sum(a, b) {
+    return a + b;
+}
+
+// 实际参数 3, 5
+const result = sum(3, 5);
+            </pre>
+      <button onclick="demo1()">运行示例</button>
+      <div id="output1" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>2. 参数数量不匹配</h3>
+      <pre>
+function showParams(a, b) {
+    console.log("参数a:", a);
+    console.log("参数b:", b);
+    console.log("arguments:", arguments);
+}
+
+showParams(1);       // 少传参数
+showParams(1, 2, 3); // 多传参数
+            </pre>
+      <button onclick="demo2()">运行示例</button>
+      <div id="output2" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>高级特性</h2>
+
+    <div class="example">
+      <h3>3. arguments对象</h3>
+      <pre>
+function logArguments() {
+    console.log("参数个数:", arguments.length);
+    console.log("所有参数:", arguments);
+    
+    // 遍历arguments
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+            </pre>
+      <button onclick="demo3()">运行示例</button>
+      <div id="output3" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>4. 默认参数</h3>
+      <pre>
+// ES5实现默认参数
+function greet(name) {
+    name = name || 'Guest';
+    return `Hello, ${name}!`;
+}
+
+// ES6默认参数
+function greetES6(name = 'Guest') {
+    return `Hello, ${name}!`;
+}
+            </pre>
+      <button onclick="demo4()">运行示例</button>
+      <div id="output4" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>剩余参数与展开语法</h2>
+
+    <div class="example">
+      <h3>5. 剩余参数(Rest Parameters)</h3>
+      <pre>
+function sumAll(...numbers) {
+    return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+
+// 与arguments对比
+function sumArguments() {
+    return Array.from(arguments).reduce((acc, curr) => acc + curr, 0);
+}
+            </pre>
+      <button onclick="demo5()">运行示例</button>
+      <div id="output5" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>6. 展开语法(Spread Syntax)</h3>
+      <pre>
+const numbers = [1, 2, 3, 4];
+
+function multiply(a, b, c, d) {
+    return a * b * c * d;
+}
+
+// 使用展开语法传递数组
+const result = multiply(...numbers);
+            </pre>
+      <button onclick="demo6()">运行示例</button>
+      <div id="output6" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>参数传递方式</h2>
+    <table class="comparison-table">
+      <tr>
+        <th>特性</th>
+        <th>形式参数(Parameters)</th>
+        <th>实参(Arguments)</th>
+        <th>arguments对象</th>
+      </tr>
+      <tr>
+        <td>定义位置</td>
+        <td>函数声明时</td>
+        <td>函数调用时</td>
+        <td>函数内部自动创建</td>
+      </tr>
+      <tr>
+        <td>数据类型</td>
+        <td>变量名</td>
+        <td>具体值</td>
+        <td>类数组对象</td>
+      </tr>
+      <tr>
+        <td>默认值</td>
+        <td>可设置(ES6)</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td>严格模式</td>
+        <td>不受影响</td>
+        <td>不受影响</td>
+        <td>不与参数绑定</td>
+      </tr>
+      <tr>
+        <td>箭头函数</td>
+        <td>支持</td>
+        <td>支持</td>
+        <td>不支持</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // 示例1：基本参数传递
+    function demo1() {
+      function sum(a, b) {
+        return a + b;
+      }
+
+      document.getElementById('output1').innerHTML = `
+                <div class="demo-result">
+                    <h4>函数定义:</h4>
+                    <pre>function sum(a, b) {
+    return a + b;
+}</pre>
+                    
+                    <h4>函数调用:</h4>
+                    <pre>sum(3, 5);</pre>
+                    
+                    <h4>执行结果:</h4>
+                    <p>返回值: <strong>${sum(3, 5)}</strong></p>
+                    
+                    <h4>参数信息:</h4>
+                    <p>形式参数(Parameters): a, b</p>
+                    <p>实际参数(Arguments): 3, 5</p>
+                    <p>函数期望的参数个数(length属性): <strong>${sum.length}</strong></p>
+                </div>
+            `;
+    }
+
+    // 示例2：参数数量不匹配
+    function demo2() {
+      function showParams(a, b) {
+        return `
+                    <div class="demo-result">
+                        <h4>函数定义:</h4>
+                        <pre>function showParams(a, b) {
+    console.log("参数a:", a);
+    console.log("参数b:", b);
+    console.log("arguments:", arguments);
+}</pre>
+                        
+                        <h4>参数信息:</h4>
+                        <p>形式参数(Parameters): a, b</p>
+                        <p>实际传入参数: <strong>[${Array.from(arguments).join(', ')}]</strong></p>
+                        <p>arguments.length: <strong>${arguments.length}</strong></p>
+                        
+                        <h4>参数值:</h4>
+                        <p>参数a: <strong>${a}</strong> ${typeof a === 'undefined' ? '(undefined)' : ''}</p>
+                        <p>参数b: <strong>${b}</strong> ${typeof b === 'undefined' ? '(undefined)' : ''}</p>
+                    </div>
+                `;
+      }
+
+      document.getElementById('output2').innerHTML = `
+                <div class="case">
+                    <h4>情况1: 少传参数 (showParams(1))</h4>
+                    ${showParams(1)}
+                </div>
+                
+                <div class="case">
+                    <h4>情况2: 多传参数 (showParams(1, 2, 3))</h4>
+                    ${showParams(1, 2, 3)}
+                </div>
+            `;
+    }
+
+    // 示例3：arguments对象
+    function demo3() {
+      function logArguments() {
+        let sum = 0;
+        for (let i = 0; i < arguments.length; i++) {
+          sum += arguments[i];
+        }
+
+        return `
+                    <div class="demo-result">
+                        <h4>函数定义:</h4>
+                        <pre>function logArguments() {
+    // arguments 是一个类数组对象
+    console.log("参数个数:", arguments.length);
+    console.log("所有参数:", arguments);
+    
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}</pre>
+                        
+                        <h4>参数信息:</h4>
+                        <p>传入参数个数: <strong>${arguments.length}</strong></p>
+                        <p>所有参数值: <strong>[${Array.from(arguments).join(', ')}]</strong></p>
+                        
+                        <h4>计算结果:</h4>
+                        <p>参数总和: <strong>${sum}</strong></p>
+                        
+                        <h4>注意事项:</h4>
+                        <p>arguments 是一个类数组对象，不是真正的数组</p>
+                        <p>在箭头函数中不可用</p>
+                    </div>
+                `;
+      }
+
+      document.getElementById('output3').innerHTML = `
+                <div class="case">
+                    <h4>示例1: logArguments(1, 2, 3, 4)</h4>
+                    ${logArguments(1, 2, 3, 4)}
+                </div>
+                
+                <div class="case">
+                    <h4>示例2: logArguments(10, 20)</h4>
+                    ${logArguments(10, 20)}
+                </div>
+            `;
+    }
+
+    // 示例4：默认参数
+    function demo4() {
+      function greet(name) {
+        name = name || 'Guest';
+        return `Hello, ${name}!`;
+      }
+
+      function greetES6(name = 'Guest') {
+        return `Hello, ${name}!`;
+      }
+
+      document.getElementById('output4').innerHTML = `
+                <div class="demo-result">
+                    <h4>ES5实现方式:</h4>
+                    <pre>function greet(name) {
+    name = name || 'Guest';
+    return \`Hello, \${name}!\`;
+}</pre>
+                    <p>调用 greet(): <strong>${greet()}</strong></p>
+                    
+                    <h4>ES6实现方式:</h4>
+                    <pre>function greetES6(name = 'Guest') {
+    return \`Hello, \${name}!\`;
+}</pre>
+                    <p>调用 greetES6(): <strong>${greetES6()}</strong></p>
+                    <p>调用 greetES6('Alice'): <strong>${greetES6('Alice')}</strong></p>
+                    
+                    <h4>区别说明:</h4>
+                    <p>ES5使用逻辑或操作符设置默认值</p>
+                    <p>ES6直接在参数中设置默认值，语法更简洁</p>
+                </div>
+            `;
+    }
+
+    // 示例5：剩余参数
+    function demo5() {
+      function sumAll(...numbers) {
+        return numbers.reduce((acc, curr) => acc + curr, 0);
+      }
+
+      function sumArguments() {
+        return Array.from(arguments).reduce((acc, curr) => acc + curr, 0);
+      }
+
+      document.getElementById('output5').innerHTML = `
+                <div class="demo-result">
+                    <h4>剩余参数方式:</h4>
+                    <pre>function sumAll(...numbers) {
+    return numbers.reduce((acc, curr) => acc + curr, 0);
+}</pre>
+                    <p>调用 sumAll(1, 2, 3, 4): <strong>${sumAll(1, 2, 3, 4)}</strong></p>
+                    
+                    <h4>arguments方式:</h4>
+                    <pre>function sumArguments() {
+    return Array.from(arguments).reduce((acc, curr) => acc + curr, 0);
+}</pre>
+                    <p>调用 sumArguments(1, 2, 3, 4): <strong>${sumArguments(1, 2, 3, 4)}</strong></p>
+                    
+                    <h4>区别说明:</h4>
+                    <p>剩余参数是真正的数组，可以直接使用数组方法</p>
+                    <p>arguments是类数组对象，需要先转换为数组</p>
+                    <p>剩余参数语法更简洁直观</p>
+                </div>
+            `;
+    }
+
+    // 示例6：展开语法
+    function demo6() {
+      const numbers = [1, 2, 3, 4];
+
+      function multiply(a, b, c, d) {
+        return a * b * c * d;
+      }
+
+      document.getElementById('output6').innerHTML = `
+                <div class="demo-result">
+                    <h4>数组定义:</h4>
+                    <pre>const numbers = [1, 2, 3, 4];</pre>
+                    
+                    <h4>函数定义:</h4>
+                    <pre>function multiply(a, b, c, d) {
+    return a * b * c * d;
+}</pre>
+                    
+                    <h4>展开语法调用:</h4>
+                    <pre>multiply(...numbers);</pre>
+                    
+                    <h4>执行结果:</h4>
+                    <p>返回值: <strong>${multiply(...numbers)}</strong></p>
+                    
+                    <h4>等价调用:</h4>
+                    <p>multiply(1, 2, 3, 4) = <strong>${multiply(1, 2, 3, 4)}</strong></p>
+                    
+                    <h4>说明:</h4>
+                    <p>展开语法将数组元素展开为单独的参数</p>
+                    <p>适用于需要将数组元素作为独立参数传递的场景</p>
+                </div>
+            `;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 匿名函数详解</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 匿名函数详解</h1>
+
+  <div class="note">
+    <h2>匿名函数基本概念</h2>
+    <p>匿名函数是没有名称的函数表达式，在JavaScript中有多种用途：</p>
+    <ul>
+      <li>作为回调函数传递给其他函数</li>
+      <li>立即调用函数表达式(IIFE)</li>
+      <li>事件处理函数</li>
+      <li>闭包实现</li>
+      <li>模块模式</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>基础语法</h2>
+
+    <div class="example">
+      <h3>1. 基本形式</h3>
+      <pre>
+// 匿名函数表达式
+const greet = function() {
+    return "Hello World!";
+};
+
+// 作为参数传递
+setTimeout(function() {
+    console.log("Delayed message");
+}, 1000);
+            </pre>
+      <button onclick="demo1()">运行示例</button>
+      <div id="output1" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>2. 立即调用函数表达式(IIFE)</h3>
+      <pre>
+// 基本IIFE
+(function() {
+    console.log("IIFE executed immediately");
+})();
+
+// 带参数的IIFE
+(function(message) {
+    console.log(message);
+})("Hello from IIFE");
+            </pre>
+      <button onclick="demo2()">运行示例</button>
+      <div id="output2" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>常见用途</h2>
+
+    <div class="example">
+      <h3>3. 回调函数</h3>
+      <pre>
+// 数组方法回调
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(function(num) {
+    return num * 2;
+});
+
+// 事件处理
+document.getElementById('myButton').addEventListener('click', function() {
+    console.log("Button clicked");
+});
+            </pre>
+      <button onclick="demo3()">运行示例</button>
+      <div id="output3" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>4. 闭包实现</h3>
+      <pre>
+function createCounter() {
+    let count = 0;
+    
+    return function() {  // 匿名函数
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+            </pre>
+      <button onclick="demo4()">运行示例</button>
+      <div id="output4" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与命名函数比较</h2>
+
+    <table class="comparison-table">
+      <tr>
+        <th>特性</th>
+        <th>匿名函数</th>
+        <th>命名函数</th>
+      </tr>
+      <tr>
+        <td>函数名</td>
+        <td>无</td>
+        <td>有</td>
+      </tr>
+      <tr>
+        <td>调试</td>
+        <td>较难(显示为anonymous)</td>
+        <td>容易(显示函数名)</td>
+      </tr>
+      <tr>
+        <td>递归调用</td>
+        <td>需通过变量名</td>
+        <td>可直接调用</td>
+      </tr>
+      <tr>
+        <td>提升</td>
+        <td>无</td>
+        <td>有</td>
+      </tr>
+      <tr>
+        <td>典型用途</td>
+        <td>回调、IIFE、一次性使用</td>
+        <td>复用、递归、需要引用的场景</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // 示例1：基本形式
+    function demo1() {
+      const greet = function () {
+        return "Hello World!";
+      };
+
+      document.getElementById('output1').innerHTML = `
+                <p>匿名函数调用: <strong>${greet()}</strong></p>
+                <p>函数name属性: <strong>${greet.name || "空"}</strong></p>
+            `;
+    }
+
+    // 示例2：IIFE
+    function demo2() {
+      let output = "";
+
+      (function () {
+        output += "IIFE executed immediately<br>";
+      })();
+
+      (function (message) {
+        output += message + "<br>";
+      })("Hello from IIFE");
+
+      document.getElementById('output2').innerHTML = output;
+    }
+
+    // 示例3：回调函数
+    function demo3() {
+      const numbers = [1, 2, 3, 4, 5];
+      const doubled = numbers.map(function (num) {
+        return num * 2;
+      });
+
+      document.getElementById('output3').innerHTML = `
+                <p>原始数组: <strong>[${numbers.join(', ')}]</strong></p>
+                <p>处理后数组: <strong>[${doubled.join(', ')}]</strong></p>
+            `;
+    }
+
+    // 示例4：闭包
+    function demo4() {
+      function createCounter() {
+        let count = 0;
+        return function () {
+          count++;
+          return count;
+        };
+      }
+
+      const counter = createCounter();
+      let results = [];
+      for (let i = 0; i < 3; i++) {
+        results.push(counter());
+      }
+
+      document.getElementById('output4').innerHTML = `
+                <p>多次调用计数器结果: <strong>[${results.join(', ')}]</strong></p>
+                <p class="tip">💡 注意：匿名函数形成了闭包，记住了count变量</p>
+            `;
+    }
+  </script>
+</body>
+
+</html>

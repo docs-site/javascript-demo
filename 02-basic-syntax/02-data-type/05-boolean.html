@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 布尔类型演示</title>
+</head>
+
+<body>
+  <h1>JavaScript 布尔类型演示</h1>
+
+  <p>JavaScript中的布尔类型只有两个值：true和false。</p>
+  
+  <button onclick="showBooleanExamples()">显示布尔示例</button>
+  <div id="result"></div>
+  
+  <script>
+    function showBooleanExamples() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      
+      // 基本布尔值
+      resultDiv.innerHTML += `true: ${true}<br>`;
+      resultDiv.innerHTML += `false: ${false}<br>`;
+      
+      // 布尔运算
+      resultDiv.innerHTML += `<br>布尔运算:<br>`;
+      resultDiv.innerHTML += `true && false: ${true && false}<br>`;
+      resultDiv.innerHTML += `true || false: ${true || false}<br>`;
+      resultDiv.innerHTML += `!true: ${!true}<br>`;
+      
+      // 转换为布尔值
+      resultDiv.innerHTML += `<br>转换为布尔值:<br>`;
+      resultDiv.innerHTML += `Boolean(0): ${Boolean(0)}<br>`;
+      resultDiv.innerHTML += `Boolean(1): ${Boolean(1)}<br>`;
+      resultDiv.innerHTML += `Boolean(""): ${Boolean("")}<br>`;
+      resultDiv.innerHTML += `Boolean("hello"): ${Boolean("hello")}<br>`;
+      resultDiv.innerHTML += `Boolean(null): ${Boolean(null)}<br>`;
+      resultDiv.innerHTML += `Boolean(undefined): ${Boolean(undefined)}<br>`;
+      resultDiv.innerHTML += `Boolean([]): ${Boolean([])}<br>`;
+      resultDiv.innerHTML += `Boolean({}): ${Boolean({})}<br>`;
+      
+      // 条件判断
+      resultDiv.innerHTML += `<br>条件判断:<br>`;
+      const age = 18;
+      resultDiv.innerHTML += `age >= 18: ${age >= 18 ? "成年人" : "未成年人"}<br>`;
+    }
+  </script>
+</body>
+
+</html>

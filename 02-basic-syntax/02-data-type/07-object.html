@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object Demo</title>
+</head>
+<body>
+    <h1>JavaScript Object Demo</h1>
+    <p>对象由花括号分隔。在括号内部，对象的属性以名称和值对的形式 (name : value) 来定义。</p>
+    <button onclick="printObjectInfo()">Print Object Info</button>
+    <div id="output"></div>
+    
+    <script>
+        // Creating an object
+        const person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 30,
+            isStudent: false,
+            
+            // Object method
+            getFullName: function() {
+                return this.firstName + ' ' + this.lastName;
+            }
+        };
+
+        // Accessing object properties
+        console.log('First Name:', person.firstName);
+        console.log('Last Name:', person['lastName']);
+        console.log('Age:', person.age);
+        console.log('Is Student:', person.isStudent);
+
+        // Calling object method
+        console.log('Full Name:', person.getFullName());
+
+        // Adding new property
+        person.country = 'USA';
+        console.log('Country:', person.country);
+
+        // Object with nested objects
+        const car = {
+            make: 'Toyota',
+            model: 'Camry',
+            year: 2020,
+            features: {
+                color: 'blue',
+                transmission: 'automatic',
+                mileage: 15000
+            }
+        };
+
+        console.log('Car:', car);
+        console.log('Car Color:', car.features.color);
+
+        function printObjectInfo() {
+            const outputDiv = document.getElementById('output');
+            let output = '';
+            
+            // Display person object info
+            output += '<h3>Person Object:</h3>';
+            output += `<p>Full Name: ${person.getFullName()}</p>`;
+            output += `<p>Age: ${person.age}</p>`;
+            output += `<p>Country: ${person.country}</p>`;
+            
+            // Display car object info
+            output += '<h3>Car Object:</h3>';
+            output += `<p>Make: ${car.make}</p>`;
+            output += `<p>Model: ${car.model}</p>`;
+            output += `<p>Color: ${car.features.color}</p>`;
+            
+            outputDiv.innerHTML = output;
+            
+            // Also log to console
+            console.log('--- Printing Object Info ---');
+            console.log('Person:', person);
+            console.log('Car:', car);
+        }
+    </script>
+</body>
+</html>

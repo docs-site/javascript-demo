@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript String Methods Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript String Methods</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+        <ul>
+            <li>字符串方法不会修改原字符串，而是返回新字符串</li>
+            <li>concat() 用于连接字符串</li>
+            <li>includes() 检查是否包含子串</li>
+            <li>indexOf() 返回子串位置</li>
+            <li>toUpperCase()/toLowerCase() 转换大小写</li>
+            <li>trim() 去除两端空白</li>
+            <li>replace() 替换子串</li>
+            <li>== 和 === 用于比较字符串</li>
+            <li>localeCompare() 用于本地化比较</li>
+        </ul>
+  </div>
+
+  <h2>字符串方法示例</h2>
+  <pre>
+const str1 = "Hello";
+const str2 = "World";
+
+// 连接字符串
+const concatStr = str1.concat(" ", str2); // "Hello World"
+
+// 检查包含
+const hasHello = concatStr.includes("Hello"); // true
+
+// 查找位置
+const worldIndex = concatStr.indexOf("World"); // 6
+
+// 大小写转换
+const upperStr = str1.toUpperCase(); // "HELLO"
+const lowerStr = str2.toLowerCase(); // "world"
+
+// 去除空白
+const spacedStr = "  trim me  ";
+const trimmedStr = spacedStr.trim(); // "trim me"
+
+// 替换
+const replacedStr = concatStr.replace("World", "JavaScript"); // "Hello JavaScript"
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const str1 = "Hello";
+    const str2 = "World";
+
+    const concatStr = str1.concat(" ", str2);
+    const hasHello = concatStr.includes("Hello");
+    const worldIndex = concatStr.indexOf("World");
+    const upperStr = str1.toUpperCase();
+    const lowerStr = str2.toLowerCase();
+    const spacedStr = "  trim me  ";
+    const trimmedStr = spacedStr.trim();
+    const replacedStr = concatStr.replace("World", "JavaScript");
+
+    console.log("String Methods:");
+    console.log("Concatenated:", concatStr);
+    console.log("Includes 'Hello':", hasHello);
+    console.log("Index of 'World':", worldIndex);
+    console.log("Uppercase:", upperStr);
+    console.log("Lowercase:", lowerStr);
+    console.log("Trimmed:", trimmedStr);
+    console.log("Replaced:", replacedStr);
+
+    // 字符串比较
+    const strA = "apple";
+    const strB = "Apple";
+    const strC = "apple";
+    
+    console.log("Comparisons:");
+    console.log(strA == strB); // false
+    console.log(strA === strC); // true
+    console.log(strA.localeCompare(strB)); // 1
+
+    // 输出到页面
+    document.write(`
+            <div class="output-box">
+                <h3>连接字符串</h3>
+                <p>${concatStr}</p>
+            </div>
+            <div class="output-box">
+                <h3>检查包含</h3>
+                <p>包含"Hello": ${hasHello}</p>
+            </div>
+            <div class="output-box">
+                <h3>查找位置</h3>
+                <p>"World"的位置: ${worldIndex}</p>
+            </div>
+            <div class="output-box">
+                <h3>大小写转换</h3>
+                <p>大写: ${upperStr}</p>
+                <p>小写: ${lowerStr}</p>
+            </div>
+            <div class="output-box">
+                <h3>去除空白</h3>
+                <p>原始: "${spacedStr}"</p>
+                <p>处理后: "${trimmedStr}"</p>
+            </div>
+            <div class="output-box">
+                <h3>替换</h3>
+                <p>原始: ${concatStr}</p>
+                <p>替换后: ${replacedStr}</p>
+            </div>
+            <div class="output-box">
+                <h3>字符串比较</h3>
+                <p>"apple" == "Apple": ${"apple" == "Apple"}</p>
+                <p>"apple" === "apple": ${"apple" === "apple"}</p>
+                <p>"apple".localeCompare("Apple"): ${"apple".localeCompare("Apple")}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

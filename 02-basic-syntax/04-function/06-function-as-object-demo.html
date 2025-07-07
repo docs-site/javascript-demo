@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 函数是对象</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 函数是对象</h1>
+
+  <div class="note">
+    <h2>函数作为对象的特点</h2>
+    <p>在JavaScript中，函数实际上是对象，具有以下特性：</p>
+    <ul>
+      <li>可以拥有属性和方法</li>
+      <li>可以作为参数传递</li>
+      <li>可以作为返回值</li>
+      <li>typeof 返回 "function"</li>
+      <li>instanceof Object 返回 true</li>
+      <li>有内置的 call/apply/bind 方法</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>基础示例</h2>
+
+    <div class="example">
+      <h3>1. 函数可以拥有属性</h3>
+      <pre>
+function greet() {
+    return `Hello, ${greet.name}!`;
+}
+
+// 添加属性
+greet.language = 'English';
+greet.author = 'John Doe';
+            </pre>
+      <button onclick="demo1()">运行示例</button>
+      <div id="output1" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>2. 函数可以作为参数传递</h3>
+      <pre>
+function process(input, processor) {
+    return processor(input);
+}
+
+function double(x) { return x * 2; }
+function square(x) { return x * x; }
+            </pre>
+      <button onclick="demo2()">运行示例</button>
+      <div id="output2" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>高级特性</h2>
+
+    <div class="example">
+      <h3>3. 函数可以作为返回值</h3>
+      <pre>
+function createMultiplier(factor) {
+    return function(x) {
+        return x * factor;
+    };
+}
+
+const triple = createMultiplier(3);
+const quadruple = createMultiplier(4);
+            </pre>
+      <button onclick="demo3()">运行示例</button>
+      <div id="output3" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>4. 类型检查</h3>
+      <pre>
+function test() {}
+
+// 检查类型
+const isFunction = typeof test === 'function';
+const isObject = test instanceof Object;
+            </pre>
+      <button onclick="demo4()">运行示例</button>
+      <div id="output4" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <script>
+    // 示例1：函数属性
+    function demo1() {
+      function greet() {
+        return `Hello, ${greet.name}!`;
+      }
+
+      greet.language = 'English';
+      greet.author = 'John Doe';
+
+      document.getElementById('output1').innerHTML = `
+                <p>函数调用: <strong>${greet()}</strong></p>
+                <p>函数属性: 
+                    <ul>
+                        <li>name: <strong>${greet.name}</strong></li>
+                        <li>language: <strong>${greet.language}</strong></li>
+                        <li>author: <strong>${greet.author}</strong></li>
+                    </ul>
+                </p>
+            `;
+    }
+
+    // 示例2：函数作为参数
+    function demo2() {
+      function process(input, processor) {
+        return processor(input);
+      }
+
+      function double(x) { return x * 2; }
+      function square(x) { return x * x; }
+
+      document.getElementById('output2').innerHTML = `
+                <p>5 的双倍: <strong>${process(5, double)}</strong></p>
+                <p>5 的平方: <strong>${process(5, square)}</strong></p>
+            `;
+    }
+
+    // 示例3：函数作为返回值
+    function demo3() {
+      function createMultiplier(factor) {
+        return function (x) {
+          return x * factor;
+        };
+      }
+
+      const triple = createMultiplier(3);
+      const quadruple = createMultiplier(4);
+
+      document.getElementById('output3').innerHTML = `
+                <p>3 的 3 倍: <strong>${triple(3)}</strong></p>
+                <p>3 的 4 倍: <strong>${quadruple(3)}</strong></p>
+            `;
+    }
+
+    // 示例4：类型检查
+    function demo4() {
+      function test() { }
+
+      const isFunction = typeof test === 'function';
+      const isObject = test instanceof Object;
+
+      document.getElementById('output4').innerHTML = `
+                <p>typeof test: <strong>${typeof test}</strong></p>
+                <p>test instanceof Object: <strong>${isObject}</strong></p>
+                <p class="tip">💡 注意：函数既是对象又是函数</p>
+            `;
+    }
+  </script>
+</body>
+
+</html>

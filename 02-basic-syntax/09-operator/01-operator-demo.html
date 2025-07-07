@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 运算符 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 运算符</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>算术运算符: +, -, *, /, %</li>
+      <li>比较运算符: ==, ===, !=, !==, >, <,>=, <=< /li>
+      <li>逻辑运算符: &&, ||, !</li>
+      <li>== 会进行类型转换，=== 严格相等</li>
+      <li>注意运算符优先级</li>
+    </ul>
+  </div>
+
+  <h2>运算符示例</h2>
+  <pre>
+// 算术运算符
+const a = 10, b = 3;
+console.log(a + b);  // 13
+console.log(a - b);  // 7
+console.log(a * b);  // 30
+console.log(a / b);  // 3.333...
+console.log(a % b);  // 1
+
+// 比较运算符
+console.log(5 == '5');   // true
+console.log(5 === '5');  // false
+console.log(a > b);      // true
+
+// 逻辑运算符
+const x = true, y = false;
+console.log(x && y);  // false
+console.log(x || y);  // true
+console.log(!x);      // false
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const a = 10, b = 3;
+    const x = true, y = false;
+
+    console.log("算术运算符:");
+    console.log("a + b =", a + b);
+    console.log("a - b =", a - b);
+    console.log("a * b =", a * b);
+    console.log("a / b =", a / b);
+    console.log("a % b =", a % b);
+
+    console.log("\n比较运算符:");
+    console.log("5 == '5'", 5 == '5');
+    console.log("5 === '5'", 5 === '5');
+    console.log("a > b", a > b);
+
+    console.log("\n逻辑运算符:");
+    console.log("x && y", x && y);
+    console.log("x || y", x || y);
+    console.log("!x", !x);
+
+    // 输出到页面
+    document.write(`
+            <div class="output-box">
+                <h3>算术运算符</h3>
+                <p>a + b = ${a + b}</p>
+                <p>a - b = ${a - b}</p>
+                <p>a * b = ${a * b}</p>
+                <p>a / b = ${a / b}</p>
+                <p>a % b = ${a % b}</p>
+            </div>
+            <div class="output-box">
+                <h3>比较运算符</h3>
+                <p>5 == '5': ${5 == '5'}</p>
+                <p>5 === '5': ${5 === '5'}</p>
+                <p>a > b: ${a > b}</p>
+            </div>
+            <div class="output-box">
+                <h3>逻辑运算符</h3>
+                <p>x && y: ${x && y}</p>
+                <p>x || y: ${x || y}</p>
+                <p>!x: ${!x}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

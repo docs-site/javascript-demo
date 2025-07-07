@@ -1,0 +1,23 @@
+<!-- 变量可以通过变量名访问。在指令式语言中，变量通常是可变的。字面量是一个恒定的值。 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Variable Demo</title>
+</head>
+<body>
+    <button onclick="showVariables()">Show Variables</button>
+    <p id="demo"></p>
+    <script>
+        let count = 0;
+        const message = "Current Count:";
+        
+        function showVariables() {
+            count++;
+            const output = `${message} ${count}`;
+            
+            document.getElementById("demo").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
+

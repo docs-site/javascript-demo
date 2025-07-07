@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 全局作用域Demo</title>
+</head>
+<body>
+    <h1>JavaScript 全局作用域演示</h1>
+    <p>在 JavaScript 中, 作用域为可访问变量，对象，函数的集合。</p>
+    <p>变量在函数外定义，即为全局变量。</p>
+    <p>全局变量有全局作用域: 网页中所有脚本和函数均可使用。</p>
+    <p>不同声明方式的区别:</p>
+    <ul>
+        <li>var声明的全局变量会成为window对象属性</li>
+        <li>let/const声明的全局变量不会成为window对象属性</li>
+        <li>未声明直接赋值的变量会成为window对象属性</li>
+    </ul>
+    <button onclick="showDemo()">运行示例</button>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        // 全局变量
+        const globalVar = "我是全局变量";
+        let globalLet = "我也是全局变量";
+        var globalVarOld = "使用var声明的全局变量";
+        
+        function showDemo() {
+            let html = '';
+            
+            // 演示未声明变量成为全局变量
+            function demoUndeclaredVar() {
+                undeclaredGlobal = "我是未声明的全局变量";
+                html += `<h3>未声明变量自动成为全局变量:</h3>`;
+                html += `<p>undeclaredGlobal: ${undeclaredGlobal}</p>`;
+                html += `<p>window.undeclaredGlobal: ${window.undeclaredGlobal}</p>`;
+            }
+            demoUndeclaredVar();
+            
+            // 1. 显示全局变量
+            html += `<h3>全局变量:</h3>`;
+            html += `<p>globalVar: ${globalVar}</p>`;
+            html += `<p>globalLet: ${globalLet}</p>`;
+            html += `<p>globalVarOld: ${globalVarOld}</p>`;
+            
+            // 2. 在函数内访问全局变量
+            function accessGlobal() {
+                html += `<h3>函数内访问全局变量:</h3>`;
+                html += `<p>函数内globalVar: ${globalVar}</p>`;
+                html += `<p>函数内globalLet: ${globalLet}</p>`;
+            }
+            accessGlobal();
+            
+            // 3. 在块级作用域内访问全局变量
+            if(true) {
+                html += `<h3>块级作用域内访问全局变量:</h3>`;
+                html += `<p>块内globalVar: ${globalVar}</p>`;
+                html += `<p>块内globalLet: ${globalLet}</p>`;
+            }
+            
+            // 4. 作为window对象的属性
+            html += `<h3>全局变量作为window属性:</h3>`;
+            html += `<p>window.globalVar: ${typeof window.globalVar}</p>`;
+            html += `<p>window.globalLet: ${typeof window.globalLet}</p>`;
+            html += `<p>window.globalVarOld: ${window.globalVarOld}</p>`;
+            html += `<p>说明: var声明的全局变量会成为window属性，let/const声明的不会</p>`;
+            
+            document.getElementById('output').innerHTML = html;
+            
+            // 控制台输出
+            console.log('全局变量:', {
+                globalVar,
+                globalLet, 
+                globalVarOld
+            });
+        }
+    </script>
+</body>
+</html>

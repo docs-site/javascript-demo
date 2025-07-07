@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 类型转字符串 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 类型转字符串</h1>
+
+  <div class="note">
+    <h3>转换为字符串的方法</h3>
+    <ul>
+      <li>String() 函数
+        <ul>
+          <li>基本类型: 直接转为字符串</li>
+          <li>对象类型: 调用 toString() 方法</li>
+        </ul>
+      </li>
+      <li>toString() 方法
+        <ul>
+          <li>数字、布尔值、对象等都有 toString()</li>
+          <li>null 和 undefined 没有 toString() 方法</li>
+        </ul>
+      </li>
+      <li>JSON.stringify()
+        <ul>
+          <li>适合将对象转为 JSON 字符串</li>
+          <li>会忽略函数和 undefined 属性</li>
+        </ul>
+      </li>
+      <li>模板字符串
+        <ul>
+          <li>使用反引号和 ${} 插入变量</li>
+          <li>自动调用 toString() 方法</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>类型转字符串示例</h2>
+  <pre>
+// 1. 基本类型
+const str = "Hello";
+const num = 123;
+const bool = true;
+const empty = null;
+const notDefined = undefined;
+const sym = Symbol("foo");
+
+// 2. 对象类型
+const obj = { name: "John", age: 30 };
+const arr = [1, 2, 3];
+const date = new Date();
+const func = function() { return "test"; };
+
+// 转换函数
+function convertToString(value) {
+  if (value === null) return "null";
+  if (value === undefined) return "undefined";
+  if (typeof value === 'symbol') return value.toString();
+  
+  try {
+    return String(value);
+  } catch (e) {
+    return "转换失败";
+  }
+}
+
+function convertWithToString(value) {
+  if (value === null || value === undefined) {
+    return "无toString方法";
+  }
+  try {
+    return value.toString();
+  } catch (e) {
+    return "转换失败";
+  }
+}
+
+function convertWithJSON(value) {
+  try {
+    return JSON.stringify(value);
+  } catch (e) {
+    return "无法转换为JSON";
+  }
+}
+    </pre>
+
+  <script>
+    // 1. 基本类型
+    const str = "Hello";
+    const num = 123;
+    const bool = true;
+    const empty = null;
+    const notDefined = undefined;
+    const sym = Symbol("foo");
+
+    // 2. 对象类型
+    const obj = { name: "John", age: 30 };
+    const arr = [1, 2, 3];
+    const date = new Date();
+    const func = function () { return "test"; };
+
+    // 转换函数
+    function convertToString(value) {
+      if (value === null) return "null";
+      if (value === undefined) return "undefined";
+      if (typeof value === 'symbol') return value.toString();
+
+      try {
+        return String(value);
+      } catch (e) {
+        return "转换失败";
+      }
+    }
+
+    function convertWithToString(value) {
+      if (value === null || value === undefined) {
+        return "无toString方法";
+      }
+      try {
+        return value.toString();
+      } catch (e) {
+        return "转换失败";
+      }
+    }
+
+    function convertWithJSON(value) {
+      try {
+        return JSON.stringify(value);
+      } catch (e) {
+        return "无法转换为JSON";
+      }
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>String() 函数转换</h3>
+                <p>字符串: ${convertToString(str)}</p>
+                <p>数字: ${convertToString(num)}</p>
+                <p>布尔值: ${convertToString(bool)}</p>
+                <p>null: ${convertToString(empty)}</p>
+                <p>undefined: ${convertToString(notDefined)}</p>
+                <p>Symbol: ${convertToString(sym)}</p>
+                <p>对象: ${convertToString(obj)}</p>
+                <p>数组: ${convertToString(arr)}</p>
+                <p>日期: ${convertToString(date)}</p>
+                <p>函数: ${convertToString(func)}</p>
+            </div>
+            <div class="output-box">
+                <h3>toString() 方法转换</h3>
+                <p>字符串: ${convertWithToString(str)}</p>
+                <p>数字: ${convertWithToString(num)}</p>
+                <p>布尔值: ${convertWithToString(bool)}</p>
+                <p>null: ${convertWithToString(empty)}</p>
+                <p>undefined: ${convertWithToString(notDefined)}</p>
+                <p>Symbol: ${convertWithToString(sym)}</p>
+                <p>对象: ${convertWithToString(obj)}</p>
+                <p>数组: ${convertWithToString(arr)}</p>
+                <p>日期: ${convertWithToString(date)}</p>
+                <p>函数: ${convertWithToString(func)}</p>
+            </div>
+            <div class="output-box">
+                <h3>JSON.stringify() 转换</h3>
+                <p>对象: ${convertWithJSON(obj)}</p>
+                <p>数组: ${convertWithJSON(arr)}</p>
+                <p>日期: ${convertWithJSON(date)}</p>
+                <p>函数: ${convertWithJSON(func)}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

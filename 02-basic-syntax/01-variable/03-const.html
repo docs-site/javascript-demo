@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript const Demo</title>
+</head>
+
+<body>
+  <h1>JavaScript const Demo</h1>
+
+  <p>const是ES6引入的常量声明方式，具有块级作用域。</p>
+  <p>const声明的变量必须初始化，且不能重新赋值，但对象/数组的内容可以修改。</p>
+  
+  <button onclick="showResult()">显示结果</button>
+  <div id="result"></div>
+  
+  <script>
+    const PI = 3.14;
+    const radius = 5;
+    const area = PI * radius * radius;
+    
+    function showResult() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `半径为${radius}的圆面积 = ${area}`;
+      
+      // 演示const特性
+      try {
+        PI = 3.14159; // 这行会报错
+      } catch (e) {
+        resultDiv.innerHTML += "<br>尝试修改PI值失败：" + e.message;
+      }
+    }
+  </script>
+</body>
+
+</html>

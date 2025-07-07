@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 箭头函数详解</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .note {
+            background: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffd600;
+            margin: 20px 0;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+
+        button:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript 箭头函数详解</h1>
+    
+    <div class="note">
+        <h2>箭头函数基本概念</h2>
+        <p>箭头函数是ES6引入的一种更简洁的函数写法，具有以下特点：</p>
+        <ul>
+            <li>更简洁的语法</li>
+            <li>没有自己的this，继承自外层作用域</li>
+            <li>不能用作构造函数</li>
+            <li>没有arguments对象</li>
+            <li>不能用作生成器函数</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>基础语法</h2>
+        
+        <div class="example">
+            <h3>1. 基本形式</h3>
+            <pre>
+// 普通函数
+const sum1 = function(a, b) {
+    return a + b;
+};
+
+// 箭头函数
+const sum2 = (a, b) => {
+    return a + b;
+};
+
+// 更简洁形式
+const sum3 = (a, b) => a + b;
+            </pre>
+            <button onclick="demo1()">运行示例</button>
+            <div id="output1" class="output-box">点击按钮查看结果</div>
+        </div>
+        
+        <div class="example">
+            <h3>2. 单参数简化</h3>
+            <pre>
+// 普通函数
+const square1 = function(x) {
+    return x * x;
+};
+
+// 箭头函数
+const square2 = x => x * x;
+            </pre>
+            <button onclick="demo2()">运行示例</button>
+            <div id="output2" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>this 绑定</h2>
+        
+        <div class="example">
+            <h3>3. this 行为比较</h3>
+            <pre>
+const obj = {
+    name: '示例对象',
+    method1: function() {
+        return this.name;
+    },
+    method2: () => {
+        return this.name || 'undefined';
+    }
+};
+            </pre>
+            <button onclick="demo3()">运行示例</button>
+            <div id="output3" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>高级用法</h2>
+        
+        <div class="example">
+            <h3>4. 回调函数</h3>
+            <pre>
+const numbers = [1, 2, 3, 4, 5];
+
+// 普通函数
+const squares1 = numbers.map(function(x) {
+    return x * x;
+});
+
+// 箭头函数
+const squares2 = numbers.map(x => x * x);
+            </pre>
+            <button onclick="demo4()">运行示例</button>
+            <div id="output4" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <script>
+        // 示例1：基本形式
+        function demo1() {
+            const sum1 = function(a, b) { return a + b; };
+            const sum2 = (a, b) => { return a + b; };
+            const sum3 = (a, b) => a + b;
+            
+            document.getElementById('output1').innerHTML = `
+                <p>普通函数: 2 + 3 = <strong>${sum1(2, 3)}</strong></p>
+                <p>箭头函数(完整): 2 + 3 = <strong>${sum2(2, 3)}</strong></p>
+                <p>箭头函数(简洁): 2 + 3 = <strong>${sum3(2, 3)}</strong></p>
+            `;
+        }
+
+        // 示例2：单参数简化
+        function demo2() {
+            const square1 = function(x) { return x * x; };
+            const square2 = x => x * x;
+            
+            document.getElementById('output2').innerHTML = `
+                <p>普通函数: 5 的平方 = <strong>${square1(5)}</strong></p>
+                <p>箭头函数: 5 的平方 = <strong>${square2(5)}</strong></p>
+            `;
+        }
+
+        // 示例3：this 行为
+        function demo3() {
+            const obj = {
+                name: '示例对象',
+                method1: function() { return this.name; },
+                method2: () => { return this.name || 'undefined'; }
+            };
+            
+            document.getElementById('output3').innerHTML = `
+                <p>普通方法中的 this: <strong>${obj.method1()}</strong></p>
+                <p>箭头函数中的 this: <strong>${obj.method2()}</strong></p>
+                <p class="tip">💡 注意：箭头函数没有自己的 this，继承自外层作用域</p>
+            `;
+        }
+
+        // 示例4：回调函数
+        function demo4() {
+            const numbers = [1, 2, 3, 4, 5];
+            const squares1 = numbers.map(function(x) { return x * x; });
+            const squares2 = numbers.map(x => x * x);
+            
+            document.getElementById('output4').innerHTML = `
+                <p>普通函数回调结果: <strong>${squares1.join(', ')}</strong></p>
+                <p>箭头函数回调结果: <strong>${squares2.join(', ')}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>

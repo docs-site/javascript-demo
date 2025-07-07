@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Literal Demo</title>
+</head>
+<body>
+    <button onclick="callFunction()">Call Function</button>
+    <p id="demo"></p>
+    <script>
+        // Function literal (function expression)
+        const greet = function() {
+            return "Hello from function literal!";
+        };
+        
+        function callFunction() {
+            document.getElementById("demo").innerHTML = greet();
+        }
+    </script>
+</body>
+</html>

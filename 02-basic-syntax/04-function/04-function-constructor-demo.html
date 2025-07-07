@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 函数构造器(Function())详解</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .note {
+            background: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffd600;
+            margin: 20px 0;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+
+        button:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript 函数构造器(Function())详解</h1>
+    
+    <div class="note">
+        <h2>函数构造器基本概念</h2>
+        <p>Function 构造函数可以动态创建函数对象。与函数声明和函数表达式不同，Function 构造函数创建的函数是在全局作用域中执行的。</p>
+        
+        <h3>基本语法：</h3>
+        <pre>new Function([arg1[, arg2[, ...argN]],] functionBody)</pre>
+        
+        <ul>
+            <li><strong>arg1, arg2, ... argN</strong>：函数的参数名称，作为字符串传入</li>
+            <li><strong>functionBody</strong>：包含函数体的字符串</li>
+        </ul>
+    </div>
+
+    <div class="warning">
+        <h2>安全注意事项</h2>
+        <p>使用 Function 构造函数与 eval() 有相似的安全问题：</p>
+        <ul>
+            <li>Function 构造函数会从字符串创建可执行代码</li>
+            <li>避免使用用户输入直接作为函数体</li>
+            <li>在严格模式下，通过 Function 创建的函数不能访问局部变量</li>
+            <li>性能通常比函数声明或表达式差</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>基础示例</h2>
+        
+        <div class="example">
+            <h3>1. 创建简单函数</h3>
+            <pre>const sayHello = new Function('name', 'return `Hello, ${name}!`');</pre>
+            <button onclick="demo1()">运行示例</button>
+            <div id="output1" class="output-box">点击按钮查看结果</div>
+        </div>
+        
+        <div class="example">
+            <h3>2. 多参数函数</h3>
+            <pre>const calculate = new Function('a', 'b', 'return a + b');</pre>
+            <button onclick="demo2()">运行示例</button>
+            <div id="output2" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>作用域行为</h2>
+        
+        <div class="example">
+            <h3>3. 全局 vs 局部变量</h3>
+            <pre>
+// 全局变量
+window.globalVar = '全局可访问';
+
+// 局部变量
+const localVar = '局部不可访问';
+
+const scopeTest = new Function('return globalVar');
+            </pre>
+            <button onclick="demo3()">运行示例</button>
+            <div id="output3" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>高级用法</h2>
+        
+        <div class="example">
+            <h3>4. 动态函数创建</h3>
+            <pre>
+const operation = prompt("输入操作类型 (add/sub/mul/div):");
+const createCalculator = new Function('a', 'b', 
+    `if ("${operation}" === "add") return a + b;
+     if ("${operation}" === "sub") return a - b;
+     if ("${operation}" === "mul") return a * b;
+     if ("${operation}" === "div") return a / b;
+     return "未知操作";`);
+            </pre>
+            <button onclick="demo4()">运行示例</button>
+            <div id="output4" class="output-box">点击按钮查看结果</div>
+        </div>
+    </div>
+
+    <script>
+        // 示例1：简单函数
+        function demo1() {
+            const sayHello = new Function('name', 'return `你好, ${name}!`');
+            document.getElementById('output1').innerHTML = 
+                `sayHello('张三') 结果: <strong>${sayHello('张三')}</strong>`;
+        }
+
+        // 示例2：多参数函数
+        function demo2() {
+            const calculate = new Function('a', 'b', 'return a + b');
+            document.getElementById('output2').innerHTML = 
+                `calculate(5, 3) 结果: <strong>${calculate(5, 3)}</strong>`;
+        }
+
+        // 示例3：作用域测试
+        function demo3() {
+            window.globalVar = '全局变量值';
+            const localVar = '局部变量值';
+            
+            const scopeTest = new Function('return globalVar');
+            
+            let result;
+            try {
+                const localTest = new Function('return localVar');
+                result = localTest();
+            } catch (e) {
+                result = `错误: ${e.message}`;
+            }
+            
+            document.getElementById('output3').innerHTML = `
+                <p>访问全局变量: <strong>${scopeTest()}</strong></p>
+                <p>尝试访问局部变量: <strong>${result}</strong></p>
+            `;
+        }
+
+        // 示例4：动态函数创建
+        function demo4() {
+            const operation = 'add'; // 模拟用户输入
+            const createCalculator = new Function('a', 'b', 
+                `if ("${operation}" === "add") return a + b;
+                 if ("${operation}" === "sub") return a - b;
+                 if ("${operation}" === "mul") return a * b;
+                 if ("${operation}" === "div") return a / b;
+                 return "未知操作";`);
+            
+            document.getElementById('output4').innerHTML = `
+                <p>创建的计算器函数 (操作类型: ${operation})</p>
+                <p>3 + 5 = <strong>${createCalculator(3, 5)}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>

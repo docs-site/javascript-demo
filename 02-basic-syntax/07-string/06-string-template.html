@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 模板字符串 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 模板字符串</h1>
+
+  <div class="note">
+    <h3>模板字符串特点</h3>
+    <ul>
+      <li>使用反引号(`)定义</li>
+      <li>支持变量嵌入: ${variable}</li>
+      <li>支持表达式计算: ${1 + 1}</li>
+      <li>自动保留换行和缩进</li>
+      <li>比字符串拼接更简洁</li>
+    </ul>
+  </div>
+
+  <h2>基础示例</h2>
+  <pre>
+const name = "张三";
+const age = 28;
+
+// 变量嵌入
+const greeting = `你好，${name}！`;
+
+// 表达式计算
+const info = `${name}今年${age}岁，明年就${age + 1}岁了`;
+
+// 多行字符串
+const profile = `
+  姓名: ${name}
+  年龄: ${age}
+  状态: ${age >= 18 ? '成年' : '未成年'}
+`;
+
+console.log(greeting);
+console.log(info);
+console.log(profile);
+    </pre>
+
+  <script>
+    // 实际代码
+    const name = "张三";
+    const age = 28;
+
+    const greeting = `你好，${name}！`;
+    const info = `${name}今年${age}岁，明年就${age + 1}岁了`;
+    const profile = `
+          姓名: ${name}
+          年龄: ${age}
+          状态: ${age >= 18 ? '成年' : '未成年'}
+        `;
+
+    console.log("模板字符串输出:");
+    console.log(greeting);
+    console.log(info);
+    console.log(profile);
+
+    // 页面输出
+    document.write(`
+            <div class="output-box">
+                <h3>变量嵌入</h3>
+                <p>${greeting}</p>
+            </div>
+            <div class="output-box">
+                <h3>表达式计算</h3>
+                <p>${info}</p>
+            </div>
+            <div class="output-box">
+                <h3>多行字符串</h3>
+                <pre>${profile}</pre>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JavaScript 代码折行书写示例</title>
+</head>
+
+<body>
+	<h1>JavaScript 代码折行书写示例</h1>
+	<p>JavaScript 是脚本语言，浏览器会在读取代码时，逐行地执行脚本代码。</p>
+	<h2>正确的折行方式</h2>
+	<pre>
+let longString = "这是一个非常非常长的字符串" +
+                 "被合理地分成多行书写";
+
+let result = calculateSomething(
+    param1,
+    param2,
+    param3
+);
+    </pre>
+
+	<h2>错误的折行方式</h2>
+	<pre>
+// 错误1: 在字符串中间直接换行
+// let brokenString = "这个字符串
+// 被错误地折行了";
+
+// 错误2: 在运算符前换行
+// let sum = x
+// + y;
+    </pre>
+
+	<script>
+		// 实际演示代码
+		// 正确示例
+		let longString = "这是一个非常非常长的字符串" +
+			"被合理地分成多行书写";
+
+		function calculateSomething(a, b, c) {
+			return a + b + c;
+		}
+
+		let result = calculateSomething(
+			1,
+			2,
+			3
+		);
+
+		console.log(longString);
+		console.log(result);
+	</script>
+</body>
+
+</html>

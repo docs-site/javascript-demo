@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript typeof Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript typeof 运算符</h1>
+  
+  <div class="note">
+    <h3>typeof 注意事项</h3>
+    <ul>
+      <li>返回表示操作数类型的字符串</li>
+      <li>typeof null 返回 "object" (历史遗留问题)</li>
+      <li>typeof 数组返回 "object" (数组是特殊对象)</li>
+      <li>typeof function 返回 "function"</li>
+    </ul>
+  </div>
+
+  <div id="result">
+    <div class="type-group">
+      <h3>基本类型</h3>
+      <button onclick="showBasicTypes()">显示基本类型结果</button>
+      <div class="output-box" id="basic-types"></div>
+    </div>
+    
+    <div class="type-group">
+      <h3>对象类型</h3>
+      <button onclick="showObjectTypes()">显示对象类型结果</button>
+      <div class="output-box" id="object-types"></div>
+    </div>
+    
+    <div class="type-group">
+      <h3>特殊案例</h3>
+      <button onclick="showSpecialCases()">显示特殊案例结果</button>
+      <div class="output-box" id="special-cases"></div>
+    </div>
+    
+    <div class="type-group">
+      <h3>精确类型检测</h3>
+      <button onclick="showPreciseTypes()">显示精确检测结果</button>
+      <div class="output-box" id="precise-types"></div>
+    </div>
+  </div>
+
+  <script>
+    function showBasicTypes() {
+      const basicDiv = document.getElementById("basic-types");
+      basicDiv.innerHTML = `
+        typeof undefined: ${typeof undefined}<br>
+        typeof true: ${typeof true}<br>
+        typeof 42: ${typeof 42}<br>
+        typeof "hello": ${typeof "hello"}<br>
+        typeof Symbol(): ${typeof Symbol()}<br>
+        typeof null: ${typeof null} //typeof null 会返回 "object"，这是一个历史遗留的问题，实际上 null 是一个空或者不存在的值，不是一个对象。<br>
+      `;
+    }
+    
+    function showObjectTypes() {
+      const objectDiv = document.getElementById("object-types");
+      objectDiv.innerHTML = `
+        typeof {}: ${typeof {}}<br>
+        typeof [1,2,3,4]: ${typeof []} //实际是数组,例如typeof [1,2,3,4] 将会返回 "object"，这是 JavaScript 早期设计的一个"缺陷"，数组本质上是特殊类型的对象。<br>
+        typeof new Date(): ${typeof new Date()}<br>
+        typeof function(){}: ${typeof function(){}}<br>
+      `;
+    }
+    
+    function showSpecialCases() {
+      const specialDiv = document.getElementById("special-cases");
+      specialDiv.innerHTML = `
+        typeof NaN: ${typeof NaN} //typeof NaN 会返回 "number"，这是因为 NaN 是一个特殊的数值类型，表示 Not a Number（不是一个数字）。<br>
+        typeof Infinity: ${typeof Infinity}<br>
+      `;
+    }
+    
+    function showPreciseTypes() {
+      const preciseDiv = document.getElementById("precise-types");
+      preciseDiv.innerHTML = `
+        Array.isArray([1,2,3,4]): ${Array.isArray([1,2,3,4])}<br>
+        Object.prototype.toString.call([1,2,3,4]): ${Object.prototype.toString.call([1,2,3,4])}<br>
+        Object.prototype.toString.call(null): ${Object.prototype.toString.call(null)}<br>
+        Object.prototype.toString.call(new Date()): ${Object.prototype.toString.call(new Date())}<br>
+      `;
+    }
+  </script>
+</body>
+
+</html>

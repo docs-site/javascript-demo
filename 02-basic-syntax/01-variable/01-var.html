@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript var Demo</title>
+</head>
+
+<body>
+  <h1>JavaScript var Demo</h1>
+
+  <p>变量是用于存储信息的"容器"。变量用于存储数据，并可以在程序执行过程中动态更改。它可以存储各种类型的数据，如数字、字符串、对象、函数等。变量名是标识符，用于引用存储在变量中的数据。</p>
+  <p>var：ES5 引入的变量声明方式，具有函数作用域。</p>
+  <button onclick="showResult()">显示结果</button>
+  <div id="result"></div>
+  <script>
+    var x = 5;
+    var y = 6;
+    var z = x + y;
+    
+    function showResult() {
+      var resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = x + " + " + y + " = " + z;
+    }
+  </script>
+</body>
+
+</html>

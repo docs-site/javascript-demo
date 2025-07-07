@@ -1,0 +1,17 @@
+<!-- 如需从 JavaScript 访问某个 HTML 元素，可以使用 document.getElementById(id) 方法。
+请使用 "id" 属性来标识 HTML 元素，并 innerHTML 来获取或插入元素内容： -->
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>我的第一个 Web 页面</h1>
+    <p id="demo">我的第一个段落</p>
+    <button onclick="changeText()">修改文本</button>
+
+    <script>
+      function changeText() {
+        document.getElementById('demo').innerHTML = '段落已修改。';
+      }
+    </script>
+  </body>
+</html>

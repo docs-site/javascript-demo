@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 数字类型演示</title>
+</head>
+
+<body>
+  <h1>JavaScript 数字类型演示</h1>
+
+  <p>JavaScript中的数字可以是整数或浮点数，支持多种表示方法。</p>
+  
+  <button onclick="showNumberExamples()">显示数字示例</button>
+  <div id="result"></div>
+  
+  <script>
+    function showNumberExamples() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      
+      // 整数
+      const integer = 42;
+      resultDiv.innerHTML += `整数: ${integer}<br>`;
+      
+      // 浮点数
+      const float = 3.14159;
+      resultDiv.innerHTML += `浮点数: ${float}<br>`;
+      
+      // 科学计数法
+      const scientific = 1.23e5;
+      resultDiv.innerHTML += `科学计数法(1.23e5): ${scientific}<br>`;
+      
+      // 不同进制
+      const binary = 0b1010; // 二进制
+      const octal = 0o12;    // 八进制
+      const hex = 0xA;       // 十六进制
+      resultDiv.innerHTML += `二进制(0b1010): ${binary}<br>`;
+      resultDiv.innerHTML += `八进制(0o12): ${octal}<br>`;
+      resultDiv.innerHTML += `十六进制(0xA): ${hex}<br>`;
+      
+      // 特殊数值
+      resultDiv.innerHTML += `正无穷大: ${Infinity}<br>`;
+      resultDiv.innerHTML += `负无穷大: ${-Infinity}<br>`;
+      resultDiv.innerHTML += `非数字: ${NaN}<br>`;
+      
+      // 大整数
+      const bigInt = 9007199254740991n;
+      resultDiv.innerHTML += `大整数: ${bigInt}<br>`;
+      
+      // 数字方法
+      resultDiv.innerHTML += `<br>数字方法:<br>`;
+      resultDiv.innerHTML += `toFixed(2): ${float.toFixed(2)}<br>`;
+      resultDiv.innerHTML += `toString(2): ${integer.toString(2)}<br>`;
+    }
+  </script>
+</body>
+
+</html>

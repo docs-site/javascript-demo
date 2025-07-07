@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript for...in循环 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript for...in循环</h1>
+
+  <div class="note">
+    <h3>for...in循环注意事项</h3>
+    <ul>
+      <li>基本语法
+        <ul>
+          <li>for (key in object) { 代码块 }</li>
+          <li>遍历对象可枚举属性</li>
+        </ul>
+      </li>
+      <li>与for...of区别
+        <ul>
+          <li>for...in遍历键名(key)</li>
+          <li>for...of遍历键值(value)</li>
+        </ul>
+      </li>
+      <li>最佳实践
+        <ul>
+          <li>遍历对象属性时使用</li>
+          <li>数组遍历推荐使用for...of或forEach</li>
+          <li>使用hasOwnProperty检查自身属性</li>
+        </ul>
+      </li>
+      <li>性能考虑
+        <ul>
+          <li>会遍历原型链上的可枚举属性</li>
+          <li>大型对象遍历可能较慢</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>for...in循环示例</h2>
+  <pre>
+// 1. 遍历对象属性
+const person = {
+    name: '张三',
+    age: 25,
+    job: '工程师'
+};
+for (const key in person) {
+    console.log(`${key}: ${person[key]}`);
+    // name: 张三
+    // age: 25
+    // job: 工程师
+}
+
+// 2. 检查自身属性
+const car = {
+    brand: 'Toyota',
+    model: 'Camry'
+};
+Object.prototype.color = 'red'; // 添加到原型
+for (const prop in car) {
+    if (car.hasOwnProperty(prop)) {
+        console.log(prop); // brand, model
+    }
+}
+
+// 3. 遍历数组(不推荐)
+const fruits = ['苹果', '香蕉', '橙子'];
+for (const index in fruits) {
+    console.log(index, fruits[index]);
+    // 0 苹果
+    // 1 香蕉
+    // 2 橙子
+}
+
+// 4. 遍历DOM节点属性
+const div = document.createElement('div');
+div.id = 'test';
+div.className = 'container';
+for (const attr in div) {
+    if (typeof div[attr] !== 'function') {
+        console.log(attr); // 输出div的所有非方法属性
+    }
+}
+    </pre>
+
+  <script>
+    // 1. 遍历对象属性
+    const person = {
+      name: '张三',
+      age: 25,
+      job: '工程师'
+    };
+    let personProps = [];
+    for (const key in person) {
+      personProps.push(`${key}: ${person[key]}`);
+    }
+
+    // 2. 检查自身属性
+    const car = {
+      brand: 'Toyota',
+      model: 'Camry'
+    };
+    Object.prototype.color = 'red';
+    let ownProps = [];
+    for (const prop in car) {
+      if (car.hasOwnProperty(prop)) {
+        ownProps.push(prop);
+      }
+    }
+
+    // 3. 遍历数组(不推荐)
+    const fruits = ['苹果', '香蕉', '橙子'];
+    let arrayItems = [];
+    for (const index in fruits) {
+      arrayItems.push(`${index}: ${fruits[index]}`);
+    }
+
+    // 4. 遍历DOM节点属性
+    const div = document.createElement('div');
+    div.id = 'test';
+    div.className = 'container';
+    let domProps = [];
+    for (const attr in div) {
+      if (typeof div[attr] !== 'function') {
+        domProps.push(attr);
+      }
+    }
+
+    document.write(`
+            <div class="output-box">
+                <h3>对象属性遍历结果</h3>
+                <p>${personProps.join('<br>')}</p>
+            </div>
+            <div class="output-box">
+                <h3>自身属性检查结果</h3>
+                <p>${ownProps.join(', ')}</p>
+            </div>
+            <div class="output-box">
+                <h3>数组遍历结果(不推荐)</h3>
+                <p>${arrayItems.join('<br>')}</p>
+            </div>
+            <div class="output-box">
+                <h3>DOM属性遍历结果</h3>
+                <p>${domProps.slice(0, 10).join(', ')}... (共${domProps.length}个属性)</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript new Keyword Demo</title>
+</head>
+<body>
+    <h1>JavaScript new Keyword Demo</h1>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button onclick="showDateExample()">Date示例</button>
+        <button onclick="showArrayExample()">Array示例</button>
+        <button onclick="showStringExample()">String示例</button>
+        <button onclick="showLiteralExample()">字面量对比</button>
+    </div>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showDateExample() {
+            const outputDiv = document.getElementById('output');
+            const date = new Date();
+            outputDiv.innerHTML = `
+                <h3>new Date():</h3>
+                <p>${date}</p>
+                <p>类型: ${typeof date}</p>
+            `;
+            console.log('new Date():', date);
+        }
+
+        function showArrayExample() {
+            const outputDiv = document.getElementById('output');
+            const arr = new Array(1, 2, 3);
+            outputDiv.innerHTML = `
+                <h3>new Array(1,2,3):</h3>
+                <p>${JSON.stringify(arr)}</p>
+                <p>类型: ${typeof arr}</p>
+            `;
+            console.log('new Array():', arr);
+        }
+
+        function showStringExample() {
+            const outputDiv = document.getElementById('output');
+            const str = new String("Hello");
+            outputDiv.innerHTML = `
+                <h3>new String("Hello"):</h3>
+                <p>${str}</p>
+                <p>类型: ${typeof str}</p>
+            `;
+            console.log('new String():', str);
+        }
+
+        function showLiteralExample() {
+            const outputDiv = document.getElementById('output');
+            const strLiteral = "Hello";
+            outputDiv.innerHTML = `
+                <h3>字符串字面量:</h3>
+                <p>${strLiteral}</p>
+                <p>类型: ${typeof strLiteral}</p>
+                <p>与new String()的区别: 字面量是原始值而非对象</p>
+            `;
+            console.log('String literal:', strLiteral);
+        }
+    </script>
+</body>
+</html>

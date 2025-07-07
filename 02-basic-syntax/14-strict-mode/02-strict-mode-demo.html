@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 严格模式声明示例</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 严格模式声明示例</h1>
+
+  <div class="note">
+    <h3>严格模式声明方式</h3>
+    <p>严格模式可以通过两种方式声明：全局声明和函数级声明。</p>
+  </div>
+
+  <h2>全局严格模式</h2>
+  <pre>
+"use strict";
+// 整个脚本文件将使用严格模式
+
+function globalStrictExample() {
+  undeclaredVar = 42; // 会抛出 ReferenceError
+}
+  </pre>
+
+  <div class="output-box">
+    <h3>全局严格模式示例</h3>
+    <div id="global-strict-output"></div>
+  </div>
+
+  <h2>函数级严格模式</h2>
+  <pre>
+function functionLevelStrict() {
+  "use strict";
+  // 只有这个函数内部使用严格模式
+  undeclaredVar = 42; // 会抛出 ReferenceError
+}
+
+function nonStrictFunction() {
+  undeclaredVar = 42; // 不会报错（非严格模式）
+}
+  </pre>
+
+  <div class="output-box">
+    <h3>函数级严格模式示例</h3>
+    <div id="function-strict-output"></div>
+  </div>
+
+  <script>
+    // 全局严格模式示例
+    function testGlobalStrict() {
+      let output = '';
+      try {
+        "use strict";
+        undeclaredVar = 42;
+        output += '<p class="success">操作成功</p>';
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      document.getElementById('global-strict-output').innerHTML = output;
+    }
+
+    // 函数级严格模式示例
+    function testFunctionLevelStrict() {
+      let output = '';
+
+      // 严格模式函数
+      function strictFunction() {
+        "use strict";
+        try {
+          undeclaredVar = 42;
+          output += '<p class="success">严格函数: 操作成功</p>';
+        } catch (error) {
+          output += `<p class="error">严格函数: ${error.name}: ${error.message}</p>`;
+        }
+      }
+
+      // 非严格模式函数
+      function nonStrictFunction() {
+        try {
+          undeclaredVar = 42;
+          output += '<p class="success">非严格函数: 操作成功</p>';
+        } catch (error) {
+          output += `<p class="error">非严格函数: ${error.name}: ${error.message}</p>`;
+        }
+      }
+
+      strictFunction();
+      nonStrictFunction();
+      document.getElementById('function-strict-output').innerHTML = output;
+    }
+
+    // 测试执行
+    testGlobalStrict();
+    testFunctionLevelStrict();
+  </script>
+</body>
+
+</html>

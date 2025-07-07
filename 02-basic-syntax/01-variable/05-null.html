@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Null Demo</title>
+</head>
+<body>
+    <h1>JavaScript Null Demo</h1>
+    
+    <button onclick="showNullDemo()">Show Null Examples</button>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showNullDemo() {
+            const outputDiv = document.getElementById('output');
+            let html = '';
+            
+            // Explicit null assignment
+            const emptyValue = null;
+            html += `<p>emptyValue: ${emptyValue}</p>`;
+            html += `<p>typeof emptyValue: ${typeof emptyValue}</p>`;
+
+            // Null as intentional absence of value
+            let user = { name: 'John' };
+            html += `<p>Original user: ${JSON.stringify(user)}</p>`;
+            user = null;
+            html += `<p>Cleared user: ${user}</p>`;
+
+            // Comparison with undefined
+            html += `<p>null == undefined: ${null == undefined}</p>`;
+            html += `<p>null === undefined: ${null === undefined}</p>`;
+
+            // Practical use case - DOM element not found
+            const nonExistentElement = document.getElementById('nonexistent');
+            html += `<p>Non-existent element: ${nonExistentElement}</p>`;
+
+            // Null in object properties
+            const config = {
+                theme: null,
+                darkMode: false
+            };
+            html += `<p>Config object: ${JSON.stringify(config)}</p>`;
+
+            outputDiv.innerHTML = html;
+            
+            // Keep original console logs for debugging
+            console.log('emptyValue:', emptyValue);
+            console.log('typeof emptyValue:', typeof emptyValue);
+            console.log('Original user:', user);
+            console.log('Cleared user:', user);
+            console.log('null == undefined:', null == undefined);
+            console.log('null === undefined:', null === undefined);
+            console.log('Non-existent element:', nonExistentElement);
+            console.log('Config object:', config);
+        }
+        // Explicit null assignment
+        const emptyValue = null;
+        console.log('emptyValue:', emptyValue);
+        console.log('typeof emptyValue:', typeof emptyValue);
+
+        // Null as intentional absence of value
+        let user = { name: 'John' };
+        console.log('Original user:', user);
+        user = null; // Explicitly clearing the object
+        console.log('Cleared user:', user);
+
+        // Comparison with undefined
+        console.log('null == undefined:', null == undefined);
+        console.log('null === undefined:', null === undefined);
+
+        // Practical use case - DOM element not found
+        const nonExistentElement = document.getElementById('nonexistent');
+        console.log('Non-existent element:', nonExistentElement);
+
+        // Null in object properties
+        const config = {
+            theme: null, // Theme not selected yet
+            darkMode: false
+        };
+        console.log('Config object:', config);
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JSON.stringify() Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JSON.stringify() 方法演示</h1>
+
+  <div class="note">
+    <h3>JSON.stringify() 注意事项</h3>
+    <ul>
+      <li>基本用法
+        <ul>
+          <li>将JavaScript对象转换为JSON字符串</li>
+          <li>支持对象、数组、字符串、数字、布尔值和null</li>
+        </ul>
+      </li>
+      <li>特殊处理
+        <ul>
+          <li>函数、Symbol、undefined会被忽略</li>
+          <li>Date对象会被转换为ISO字符串</li>
+          <li>循环引用会抛出错误</li>
+        </ul>
+      </li>
+      <li>参数说明
+        <ul>
+          <li>replacer: 过滤或转换属性</li>
+          <li>space: 控制缩进格式</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>JSON.stringify() 示例</h2>
+  <pre>
+// 1. 基本对象转换
+const obj1 = { name: "张三", age: 25 };
+const json1 = JSON.stringify(obj1);
+
+// 2. 数组转换
+const arr1 = [1, "two", true];
+const json2 = JSON.stringify(arr1);
+
+// 3. 特殊值处理
+const obj2 = { 
+    date: new Date(),
+    func: function() {},
+    undef: undefined
+};
+const json3 = JSON.stringify(obj2);
+
+// 4. 使用replacer参数
+const obj3 = { 
+    name: "李四", 
+    password: "secret", 
+    age: 30 
+};
+const json4 = JSON.stringify(obj3, ["name", "age"]);
+
+// 5. 格式化输出
+const obj4 = { a: 1, b: { c: 2 } };
+const json5 = JSON.stringify(obj4, null, 2);
+    </pre>
+
+  <script>
+    // 1. 基本对象转换
+    const obj1 = { name: "张三", age: 25 };
+    const json1 = JSON.stringify(obj1);
+
+    // 2. 数组转换
+    const arr1 = [1, "two", true];
+    const json2 = JSON.stringify(arr1);
+
+    // 3. 特殊值处理
+    const obj2 = {
+      date: new Date(),
+      func: function () { },
+      undef: undefined
+    };
+    const json3 = JSON.stringify(obj2);
+
+    // 4. 使用replacer参数
+    const obj3 = {
+      name: "李四",
+      password: "secret",
+      age: 30
+    };
+    const json4 = JSON.stringify(obj3, ["name", "age"]);
+
+    // 5. 格式化输出
+    const obj4 = { a: 1, b: { c: 2 } };
+    const json5 = JSON.stringify(obj4, null, 2);
+
+    document.write(`
+            <div class="output-box">
+                <h3>基本对象转换</h3>
+                <p>${json1}</p>
+            </div>
+            <div class="output-box">
+                <h3>数组转换</h3>
+                <p>${json2}</p>
+            </div>
+            <div class="output-box">
+                <h3>特殊值处理</h3>
+                <p>${json3}</p>
+            </div>
+            <div class="output-box">
+                <h3>使用replacer参数</h3>
+                <p>${json4}</p>
+            </div>
+            <div class="output-box">
+                <h3>格式化输出</h3>
+                <pre>${json5}</pre>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

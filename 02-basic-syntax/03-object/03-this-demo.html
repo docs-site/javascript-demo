@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript this用法Demo</title>
+</head>
+<body>
+    <h1>this关键字用法演示</h1>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button onclick="showGlobalThis()">全局this</button>
+        <button onclick="showObjectMethodThis()">对象方法this</button>
+        <button onclick="showConstructorThis()">构造函数this</button>
+        <button onclick="showEventListenerThis()">事件监听this</button>
+    </div>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showGlobalThis() {
+            // 1. 全局环境中的this
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>全局环境中的this:</h3>
+                <p>在浏览器中，全局this指向window对象</p>
+                <p>this === window: ${this === window}</p>
+            `;
+            console.log('全局this:', this);
+        }
+
+        const obj = {
+            name: '示例对象',
+            showThis: function() {
+                // 2. 对象方法中的this
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML = `
+                    <h3>对象方法中的this:</h3>
+                    <p>指向调用该方法的对象</p>
+                    <p>this.name: ${this.name}</p>
+                `;
+                console.log('对象方法this:', this);
+            }
+        };
+
+        function showObjectMethodThis() {
+            obj.showThis();
+        }
+
+        function Person(name) {
+            // 3. 构造函数中的this
+            this.name = name;
+            this.showThis = function() {
+                return `构造函数中this指向新创建的对象: ${this.name}`;
+            };
+        }
+
+        function showConstructorThis() {
+            const person = new Person('张三');
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>构造函数中的this:</h3>
+                <p>${person.showThis()}</p>
+            `;
+            console.log('构造函数this:', person);
+        }
+
+        function showEventListenerThis() {
+            // 4. 事件处理函数中的this
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>事件处理函数中的this:</h3>
+                <p>指向触发事件的DOM元素</p>
+                <button id="testBtn">测试按钮</button>
+                <p id="eventThis"></p>
+            `;
+            
+            document.getElementById('testBtn').addEventListener('click', function() {
+                document.getElementById('eventThis').textContent = 
+                    `this指向: ${this.tagName} (${this.textContent})`;
+                console.log('事件处理this:', this);
+            });
+        }
+    </script>
+</body>
+</html>

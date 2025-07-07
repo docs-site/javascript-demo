@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript String Object Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript String Object</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>字符串可以是原始类型或String对象</li>
+      <li>使用new String()创建String对象</li>
+      <li>String对象有方法和属性</li>
+      <li>JavaScript会自动在需要时将原始字符串转换为String对象</li>
+      <li>通常建议使用原始字符串</li>
+    </ul>
+  </div>
+
+  <h2>字符串对象示例</h2>
+  <pre>
+// 原始字符串
+const strPrimitive = "Hello";
+
+// String对象
+const strObject = new String("World");
+
+// 类型检查
+console.log(typeof strPrimitive); // "string"
+console.log(typeof strObject);    // "object"
+
+// instanceof检查
+console.log(strPrimitive instanceof String); // false
+console.log(strObject instanceof String);    // true
+
+// 自动装箱
+console.log(strPrimitive.length); // 5 (自动转换为String对象)
+    </pre>
+
+  <h2>String对象方法</h2>
+  <pre>
+const str = new String("JavaScript");
+
+// 访问字符
+console.log(str.charAt(0)); // 'J'
+
+// 转换为大写
+console.log(str.toUpperCase()); // 'JAVASCRIPT'
+
+// 子字符串
+console.log(str.substring(4, 10)); // 'Script'
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const strPrimitive = "Hello";
+    const strObject = new String("World");
+    const str = new String("JavaScript");
+
+    console.log("Type Checks:");
+    console.log(typeof strPrimitive);
+    console.log(typeof strObject);
+    console.log(strPrimitive instanceof String);
+    console.log(strObject instanceof String);
+    console.log(strPrimitive.length);
+
+    console.log("String Methods:");
+    console.log(str.charAt(0));
+    console.log(str.toUpperCase());
+    console.log(str.substring(4, 10));
+
+    // 输出到页面
+    document.write(`
+            <div class="output-box">
+                <h3>原始字符串 vs String对象</h3>
+                <p>原始字符串: ${strPrimitive} (${typeof strPrimitive})</p>
+                <p>String对象: ${strObject} (${typeof strObject})</p>
+            </div>
+            <div class="output-box">
+                <h3>类型检查</h3>
+                <p>strPrimitive instanceof String: ${strPrimitive instanceof String}</p>
+                <p>strObject instanceof String: ${strObject instanceof String}</p>
+            </div>
+            <div class="output-box">
+                <h3>String对象方法</h3>
+                <p>charAt(0): ${str.charAt(0)}</p>
+                <p>toUpperCase(): ${str.toUpperCase()}</p>
+                <p>substring(4,10): ${str.substring(4, 10)}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象方法Demo</title>
+</head>
+<body>
+    <h1>为对象添加方法Demo</h1>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button onclick="createObject()">创建对象</button>
+        <button onclick="addMethod1()">添加方法1</button>
+        <button onclick="addMethod2()">添加方法2</button>
+        <button onclick="callMethods()">调用方法</button>
+        <button onclick="modifyObject()">修改对象</button>
+    </div>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        let person = null;
+        
+        function createObject() {
+            // 1. 创建一个简单对象
+            person = {
+                name: '张三',
+                age: 25
+            };
+            document.getElementById('output').innerHTML = 
+                `<h3>对象创建成功</h3>
+                 <p>name: ${person.name}</p>
+                 <p>age: ${person.age}</p>`;
+            console.log('对象创建:', person);
+        }
+        
+        function addMethod1() {
+            if(!person) return alert('请先创建对象');
+            // 2. 为对象添加方法1: 直接添加
+            person.sayHello = function() {
+                return `你好，我是${this.name}`;
+            };
+            document.getElementById('output').innerHTML = 
+                `<h3>方法1添加成功</h3>
+                 <p>sayHello方法已添加</p>`;
+            console.log('添加方法1:', person.sayHello);
+        }
+        
+        function addMethod2() {
+            if(!person) return alert('请先创建对象');
+            // 3. 为对象添加方法2: 先定义函数再添加
+            function showAge() {
+                return `我今年${this.age}岁`;
+            }
+            person.showAge = showAge;
+            document.getElementById('output').innerHTML = 
+                `<h3>方法2添加成功</h3>
+                 <p>showAge方法已添加</p>`;
+            console.log('添加方法2:', person.showAge);
+        }
+        
+        function callMethods() {
+            if(!person || !person.sayHello || !person.showAge) 
+                return alert('请先创建对象并添加方法');
+            // 4. 调用对象方法
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>方法调用结果:</h3>
+                <p>${person.sayHello()}</p>
+                <p>${person.showAge()}</p>`;
+            console.log('方法调用:', {
+                sayHello: person.sayHello(),
+                showAge: person.showAge()
+            });
+        }
+
+        function modifyObject() {
+            if(!person) return alert('请先创建对象');
+            
+            // 修改对象属性
+            person.name = '修改后的名字';
+            person.age = 40;
+            
+            // 添加新属性
+            person.gender = '男';
+            
+            // 修改方法
+            person.sayHello = function() {
+                return `修改后的问候: 我是${this.name}, ${this.gender}, ${this.age}岁`;
+            };
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>对象修改结果:</h3>
+                <p>name: ${person.name}</p>
+                <p>age: ${person.age}</p>
+                <p>gender: ${person.gender}</p>
+                <p>${person.sayHello()}</p>
+            `;
+            console.log('修改后的对象:', person);
+        }
+    </script>
+</body>
+</html>

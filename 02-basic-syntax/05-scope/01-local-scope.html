@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 局部作用域Demo</title>
+</head>
+
+<body>
+  <h1>JavaScript 局部作用域演示</h1>
+  <p>在 JavaScript 中, 作用域为可访问变量，对象，函数的集合。</p>
+  <p>变量在函数内声明，变量为局部变量，具有局部作用域。</p>
+  <p>局部变量：只能在函数内部访问。因为局部变量只作用于函数内，所以不同的函数可以使用相同名称的变量。局部变量在函数开始执行时创建，函数执行完后局部变量会自动销毁。</p>
+  <button onclick="showDemo()">运行示例</button>
+  <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+  <script>
+    function showDemo() {
+      let html = '';
+
+      // 1. 函数作用域示例
+      function demoFunctionScope() {
+        const localVar = "函数内的局部变量";
+        html += `<h3>函数作用域:</h3>`;
+        html += `<p>函数内访问localVar: ${localVar}</p>`;
+
+        try {
+          // 尝试在函数外访问局部变量
+          if (typeof localVarOutside === 'undefined') {
+            html += `<p>函数外无法访问localVar</p>`;
+          }
+        } catch (e) {
+          html += `<p style="color:red">函数外访问localVar错误: ${e.message}</p>`;
+        }
+      }
+
+      // 2. 块级作用域示例 (let/const)
+      if (true) {
+        const blockVar = "块级作用域变量";
+        html += `<h3>块级作用域:</h3>`;
+        html += `<p>块内访问blockVar: ${blockVar}</p>`;
+
+        try {
+          // 尝试在块外访问块级变量
+          if (typeof blockVar === 'undefined') {
+            html += `<p>块外无法访问blockVar</p>`;
+          }
+        } catch (e) {
+          html += `<p style="color:red">块外访问blockVar错误: ${e.message}</p>`;
+        }
+      }
+
+      // 调用函数作用域示例
+      demoFunctionScope();
+
+      // 3. 尝试访问各种变量
+      html += `<h3>作用域外访问测试:</h3>`;
+      try {
+        html += `<p>尝试访问localVar: ${typeof localVar}</p>`;
+      } catch (e) {
+        html += `<p style="color:red">访问localVar错误: ${e.message}</p>`;
+      }
+
+      try {
+        html += `<p>尝试访问blockVar: ${typeof blockVar}</p>`;
+      } catch (e) {
+        html += `<p style="color:red">访问blockVar错误: ${e.message}</p>`;
+      }
+
+      document.getElementById('output').innerHTML = html;
+
+      // 控制台输出
+      console.log('局部作用域演示完成');
+    }
+  </script>
+</body>
+
+</html>

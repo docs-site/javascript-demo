@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数Demo</title>
+</head>
+<body>
+    <h1>JavaScript构造函数演示</h1>
+    
+    <button onclick="showDemo()">运行示例</button>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showDemo() {
+            const outputDiv = document.getElementById('output');
+            let html = '';
+            
+            // 1. 定义构造函数
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+                this.greet = function() {
+                    return `你好，我是${this.name}，今年${this.age}岁`;
+                };
+            }
+            
+            // 2. 使用new创建实例
+            const person1 = new Person('张三', 25);
+            const person2 = new Person('李四', 30);
+            
+            // 3. 显示结果
+            html += `<h3>构造函数创建的实例:</h3>`;
+            html += `<p>person1: ${person1.greet()}</p>`;
+            html += `<p>person2: ${person2.greet()}</p>`;
+            html += `<p>person1 instanceof Person: ${person1 instanceof Person}</p>`;
+            
+            outputDiv.innerHTML = html;
+            
+            // 4. 控制台输出
+            console.log('person1:', person1);
+            console.log('person2:', person2);
+            console.log('Person.prototype:', Person.prototype);
+        }
+    </script>
+</body>
+</html>

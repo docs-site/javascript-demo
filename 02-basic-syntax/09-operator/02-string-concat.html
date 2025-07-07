@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 字符串连接运算符 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 字符串连接运算符</h1>
+
+  <div class="note">
+    <h3>+ 运算符注意事项</h3>
+    <ul>
+      <li>用于字符串连接和加法运算</li>
+      <li>操作数包含字符串时执行连接操作</li>
+      <li>会进行自动类型转换</li>
+      <li>操作顺序影响结果</li>
+      <li>空字符串与数字相加会转换为字符串</li>
+      <li>布尔值与字符串相加会转换为字符串</li>
+    </ul>
+  </div>
+
+  <h2>连接运算符示例</h2>
+  <pre>
+const str = "Hello";
+const num = 123;
+
+// 基本连接
+console.log(str + " World"); // "Hello World"
+
+// 类型转换
+console.log(str + num);      // "Hello123"
+console.log(num + str);      // "123Hello"
+console.log(1 + 2 + str);    // "3Hello"
+console.log(str + 1 + 2);    // "Hello12"
+
+// 字符与数字相加
+const char = "A";
+console.log(char + 1);       // "A1"
+console.log(1 + char);       // "1A"
+
+// 空字符串与数字
+console.log("" + 123);       // "123"
+console.log(123 + "");       // "123"
+
+// 布尔值与字符串
+console.log(true + "1");     // "true1"
+console.log("1" + false);    // "1false"
+
+// 多操作数连接
+const fullStr = str + " " + num + " " + true;
+console.log(fullStr);        // "Hello 123 true"
+    </pre>
+
+  <script>
+    const str = "Hello";
+    const num = 123;
+
+    console.log("字符串连接运算符示例:");
+    console.log(str + " World");
+    console.log(str + num);
+    console.log(num + str);
+    console.log(1 + 2 + str);
+    console.log(str + 1 + 2);
+
+    const fullStr = str + " " + num + " " + true;
+
+    document.write(`
+            <div class="output-box">
+                <h3>连接结果</h3>
+                <p>${str + " World"}</p>
+                <p>${str + num}</p>
+                <p>${num + str}</p>
+                <p>${1 + 2 + str}</p>
+                <p>${str + 1 + 2}</p>
+            </div>
+            <div class="output-box">
+                <h3>字符与数字相加</h3>
+                <p>"A" + 1 = ${"A" + 1}</p>
+                <p>1 + "A" = ${1 + "A"}</p>
+                <p>"" + 123 = ${"" + 123}</p>
+                <p>123 + "" = ${123 + ""}</p>
+                <p>true + "1" = ${true + "1"}</p>
+                <p>"1" + false = ${"1" + false}</p>
+            </div>
+            <div class="output-box">
+                <h3>多操作数连接</h3>
+                <p>${fullStr}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

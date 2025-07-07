@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Type Declarations Demo</title>
+</head>
+<body>
+    <h1>JavaScript Type Declarations Demo</h1>
+    
+    <button onclick="showTypeExamples()">Show Type Examples</button>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showTypeExamples() {
+            const outputDiv = document.getElementById('output');
+            let html = '';
+            
+            // Basic type declarations
+            const name = 'Alice'; // string
+            let age = 30; // number
+            var isActive = true; // boolean
+            const scores = [90, 85, 95]; // array
+            const person = { name: 'Bob', age: 25 }; // object
+            
+            html += `<h3>Basic Type Declarations:</h3>`;
+            html += `<p>name (${typeof name}): ${name}</p>`;
+            html += `<p>age (${typeof age}): ${age}</p>`;
+            html += `<p>isActive (${typeof isActive}): ${isActive}</p>`;
+            html += `<p>scores (${typeof scores}): ${JSON.stringify(scores)}</p>`;
+            html += `<p>person (${typeof person}): ${JSON.stringify(person)}</p>`;
+            
+            // Type inference
+            let inferredString = 'Hello'; // inferred as string
+            let inferredNumber = 42; // inferred as number
+            let inferredBoolean = false; // inferred as boolean
+            
+            html += `<h3>Type Inference:</h3>`;
+            html += `<p>inferredString: ${typeof inferredString}</p>`;
+            html += `<p>inferredNumber: ${typeof inferredNumber}</p>`;
+            html += `<p>inferredBoolean: ${typeof inferredBoolean}</p>`;
+            
+            // Type conversion
+            const stringToNumber = Number('123');
+            const numberToString = String(456);
+            const truthyCheck = Boolean('text');
+            
+            html += `<h3>Type Conversion:</h3>`;
+            html += `<p>stringToNumber: ${stringToNumber} (${typeof stringToNumber})</p>`;
+            html += `<p>numberToString: ${numberToString} (${typeof numberToString})</p>`;
+            html += `<p>truthyCheck: ${truthyCheck} (${typeof truthyCheck})</p>`;
+            
+            outputDiv.innerHTML = html;
+            
+            // Console logs for debugging
+            console.log('Basic types:', { name, age, isActive, scores, person });
+            console.log('Inferred types:', { inferredString, inferredNumber, inferredBoolean });
+            console.log('Type conversions:', { stringToNumber, numberToString, truthyCheck });
+        }
+    </script>
+</body>
+</html>

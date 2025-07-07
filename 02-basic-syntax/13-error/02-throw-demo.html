@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript throw 错误抛出 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript throw 错误抛出</h1>
+
+  <div class="note">
+    <h3>throw 语句</h3>
+    <ul>
+      <li>用于主动抛出错误</li>
+      <li>可以抛出任何类型的值，但通常抛出Error对象</li>
+      <li>常用错误类型:
+        <ul>
+          <li>Error: 通用错误</li>
+          <li>RangeError: 数值超出范围</li>
+          <li>自定义错误类</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>throw 示例</h2>
+  <pre>
+// 1. 抛出基本错误
+function validateAge(age) {
+  if (age < 0) {
+    throw new Error('年龄不能为负数');
+  }
+  if (age > 120) {
+    throw new RangeError('年龄超出合理范围');
+  }
+}
+
+// 2. 自定义错误类
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+
+// 3. 抛出不同类型
+function processInput(input) {
+  if (typeof input !== 'string') {
+    throw new TypeError('需要字符串类型');
+  }
+  if (input.length === 0) {
+    throw new ValidationError('输入不能为空');
+  }
+}
+    </pre>
+
+  <script>
+    // 测试函数
+    function testThrow() {
+      let output = '';
+
+      // 1. 基本错误抛出
+      output += '<div class="output-box">';
+      output += '<h3>基本错误抛出</h3>';
+      try {
+        validateAge(-5);
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      // 2. 范围错误
+      output += '<div class="output-box">';
+      output += '<h3>范围错误</h3>';
+      try {
+        validateAge(150);
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      // 3. 自定义错误
+      output += '<div class="output-box">';
+      output += '<h3>自定义错误</h3>';
+      try {
+        processInput('');
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      return output;
+    }
+
+    // 验证函数
+    function validateAge(age) {
+      if (age < 0) throw new Error('年龄不能为负数');
+      if (age > 120) throw new RangeError('年龄超出合理范围');
+    }
+
+    // 自定义错误类
+    class ValidationError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+      }
+    }
+
+    // 处理输入
+    function processInput(input) {
+      if (typeof input !== 'string') {
+        throw new TypeError('需要字符串类型');
+      }
+      if (input.length === 0) {
+        throw new ValidationError('输入不能为空');
+      }
+    }
+
+    document.write(testThrow());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 函数的默认属性和方法</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript 函数的默认属性和方法</h1>
+
+  <div class="note">
+    <h2>函数的默认属性和方法</h2>
+    <p>JavaScript 函数作为对象，具有以下内置属性和方法：</p>
+    <ul>
+      <li><strong>name</strong> - 函数名称</li>
+      <li><strong>length</strong> - 函数期望的参数个数</li>
+      <li><strong>prototype</strong> - 用于构造函数</li>
+      <li><strong>call()</strong> - 调用函数并指定this值</li>
+      <li><strong>apply()</strong> - 类似call()但参数为数组</li>
+      <li><strong>bind()</strong> - 创建绑定this的新函数</li>
+      <li><strong>toString()</strong> - 返回函数源代码</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>基础属性</h2>
+
+    <div class="example">
+      <h3>1. name 和 length 属性</h3>
+      <pre>
+function sum(a, b, c) {
+    return a + b + c;
+}
+
+const anonymous = function() {};
+const arrow = () => {};
+            </pre>
+      <button onclick="demo1()">运行示例</button>
+      <div id="output1" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>2. prototype 属性</h3>
+      <pre>
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.greet = function() {
+    return `Hello, ${this.name}!`;
+};
+            </pre>
+      <button onclick="demo2()">运行示例</button>
+      <div id="output2" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>方法演示</h2>
+
+    <div class="example">
+      <h3>3. call/apply/bind</h3>
+      <pre>
+function greet(greeting, punctuation) {
+    return `${greeting}, ${this.name}${punctuation}`;
+}
+
+const person = { name: '张三' };
+            </pre>
+      <button onclick="demo3()">运行示例</button>
+      <div id="output3" class="output-box">点击按钮查看结果</div>
+    </div>
+
+    <div class="example">
+      <h3>4. toString()</h3>
+      <pre>
+function exampleFunc(a, b) {
+    return a + b;
+}
+            </pre>
+      <button onclick="demo4()">运行示例</button>
+      <div id="output4" class="output-box">点击按钮查看结果</div>
+    </div>
+  </div>
+
+  <script>
+    // 示例1：name和length
+    function demo1() {
+      function sum(a, b, c) {
+        return a + b + c;
+      }
+
+      const anonymous = function () { };
+      const arrow = () => { };
+
+      document.getElementById('output1').innerHTML = `
+                <p>sum 函数: 
+                    <ul>
+                        <li>name: <strong>${sum.name}</strong></li>
+                        <li>length: <strong>${sum.length}</strong></li>
+                    </ul>
+                </p>
+                <p>匿名函数: 
+                    <ul>
+                        <li>name: <strong>${anonymous.name || '空'}</strong></li>
+                        <li>length: <strong>${anonymous.length}</strong></li>
+                    </ul>
+                </p>
+                <p>箭头函数: 
+                    <ul>
+                        <li>name: <strong>${arrow.name || '空'}</strong></li>
+                        <li>length: <strong>${arrow.length}</strong></li>
+                    </ul>
+                </p>
+            `;
+    }
+
+    // 示例2：prototype
+    function demo2() {
+      function Person(name) {
+        this.name = name;
+      }
+
+      Person.prototype.greet = function () {
+        return `Hello, ${this.name}!`;
+      };
+
+      const john = new Person('John');
+
+      document.getElementById('output2').innerHTML = `
+                <p>Person.prototype: <strong>${JSON.stringify(Object.getOwnPropertyNames(Person.prototype))}</strong></p>
+                <p>实例方法调用: <strong>${john.greet()}</strong></p>
+            `;
+    }
+
+    // 示例3：call/apply/bind
+    function demo3() {
+      function greet(greeting, punctuation) {
+        return `${greeting}, ${this.name}${punctuation}`;
+      }
+
+      const person = { name: '张三' };
+
+      document.getElementById('output3').innerHTML = `
+                <p>call(): <strong>${greet.call(person, '你好', '!')}</strong></p>
+                <p>apply(): <strong>${greet.apply(person, ['你好', '!'])}</strong></p>
+                <p>bind(): <strong>${greet.bind(person)('你好', '!')}</strong></p>
+            `;
+    }
+
+    // 示例4：toString
+    function demo4() {
+      function exampleFunc(a, b) {
+        return a + b;
+      }
+
+      document.getElementById('output4').innerHTML = `
+                <p>函数源代码:</p>
+                <pre>${exampleFunc.toString()}</pre>
+            `;
+    }
+  </script>
+</body>
+
+</html>

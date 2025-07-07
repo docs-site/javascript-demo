@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Literal Demo</title>
+</head>
+<body>
+    <button onclick="showArray()">Show Array</button>
+    <p id="demo"></p>
+    <script>
+        function showArray() {
+            const arr = [1, 2, 3];
+            document.getElementById("demo").innerHTML = "Array: " + arr.join(", ");
+        }
+    </script>
+</body>
+</html>

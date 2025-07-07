@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript String Quotes Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript String Quotes</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>字符串中可以使用单引号或双引号</li>
+      <li>在单引号字符串中使用双引号不需要转义</li>
+      <li>在双引号字符串中使用单引号不需要转义</li>
+      <li>使用反斜杠(\)转义相同类型的引号</li>
+      <li>模板字符串(``)可以包含任意引号</li>
+    </ul>
+  </div>
+
+  <h2>引号使用示例</h2>
+  <pre>
+// 单引号字符串包含双引号
+const str1 = 'He said "Hello"';
+
+// 双引号字符串包含单引号
+const str2 = "It's a nice day";
+
+// 转义相同类型的引号
+const str3 = 'Don\\'t worry';
+const str4 = "She said \"Hi\"";
+
+// 模板字符串包含引号
+const name = 'Alice';
+const str5 = `"${name}" said 'Hello'`;
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const str1 = 'He said "Hello"';
+    const str2 = "It's a nice day";
+    const str3 = 'Don\'t worry';
+    const str4 = "She said \"Hi\"";
+    const name = 'Alice';
+    const str5 = `"${name}" said 'Hello'`;
+
+    console.log("String Examples:");
+    console.log(str1);
+    console.log(str2);
+    console.log(str3);
+    console.log(str4);
+    console.log(str5);
+
+    // 输出到页面
+    document.write(`
+            <div class="output-box">
+                <h3>单引号字符串包含双引号</h3>
+                <p>${str1}</p>
+            </div>
+            <div class="output-box">
+                <h3>双引号字符串包含单引号</h3>
+                <p>${str2}</p>
+            </div>
+            <div class="output-box">
+                <h3>转义单引号</h3>
+                <p>${str3}</p>
+            </div>
+            <div class="output-box">
+                <h3>转义双引号</h3>
+                <p>${str4}</p>
+            </div>
+            <div class="output-box">
+                <h3>模板字符串包含引号</h3>
+                <p>${str5}</p>
+            </div>
+        `);
+  </script>
+</body>
+
+</html>

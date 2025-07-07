@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript 类表达式</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+
+    button:hover {
+      background: #0069d9;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript 类表达式</h1>
+
+  <div class="note">
+    <h3>类表达式特点</h3>
+    <ul>
+      <li>类可以像函数一样使用表达式定义</li>
+      <li>可以是匿名或命名形式</li>
+      <li>可以赋值给变量</li>
+      <li>可以作为参数传递</li>
+      <li>可以作为返回值</li>
+      <li>类表达式也受限于不会提升(hoisting)</li>
+    </ul>
+  </div>
+
+  <h2>类表达式示例</h2>
+  
+  <div>
+    <button onclick="showAnonymousClass()">匿名类表达式</button>
+    <button onclick="showNamedClass()">命名类表达式</button>
+    <button onclick="showClassAsVariable()">类赋值给变量</button>
+  </div>
+
+  <div id="output" class="output-box">
+    <h3 id="current-demo-title">请点击上方按钮查看类表达式示例</h3>
+    <div id="output-content"></div>
+  </div>
+
+  <pre id="code-example"><code>// 点击按钮查看代码示例</code></pre>
+
+  <script>
+    // 匿名类表达式
+    function showAnonymousClass() {
+      document.getElementById('current-demo-title').textContent = '匿名类表达式';
+      
+      const Person = class {
+        constructor(name) {
+          this.name = name;
+        }
+        greet() {
+          return `Hello, ${this.name}`;
+        }
+      };
+      
+      const person = new Person('张三');
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>匿名类表达式</h4>
+          <ul>
+            <li>类没有名称，直接赋值给变量</li>
+            <li>验证结果: person.greet() → ${person.greet()}</li>
+            <li>typeof Person → ${typeof Person}</li>
+            <li>Person.name → ${Person.name}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>const Person = class {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    return \`Hello, \${this.name}\`;
+  }
+};
+
+const person = new Person('张三');
+person.greet();</code>`;
+    }
+
+    // 命名类表达式
+    function showNamedClass() {
+      document.getElementById('current-demo-title').textContent = '命名类表达式';
+      
+      const Employee = class Emp {
+        constructor(name, title) {
+          this.name = name;
+          this.title = title;
+        }
+        introduce() {
+          return `I'm ${this.name}, ${this.title}`;
+        }
+      };
+      
+      const employee = new Employee('李四', 'Developer');
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>命名类表达式</h4>
+          <ul>
+            <li>类有名称，但仍赋值给变量</li>
+            <li>类名只在类内部可见</li>
+            <li>验证结果: employee.introduce() → ${employee.introduce()}</li>
+            <li>typeof Employee → ${typeof Employee}</li>
+            <li>Employee.name → ${Employee.name}</li>
+            <li>typeof Emp → ${typeof Emp}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>const Employee = class Emp {
+  constructor(name, title) {
+    this.name = name;
+    this.title = title;
+  }
+  introduce() {
+    return \`I'm \${this.name}, \${this.title}\`;
+  }
+};
+
+const employee = new Employee('李四', 'Developer');
+employee.introduce();</code>`;
+    }
+
+    // 类赋值给变量
+    function showClassAsVariable() {
+      document.getElementById('current-demo-title').textContent = '类赋值给变量';
+      
+      function createClass() {
+        return class {
+          constructor(value) {
+            this.value = value;
+          }
+          getValue() {
+            return this.value;
+          }
+        };
+      }
+      
+      const MyClass = createClass();
+      const instance = new MyClass(42);
+      document.getElementById('output-content').innerHTML = `
+        <div class="explanation">
+          <h4>类赋值给变量</h4>
+          <ul>
+            <li>类可以作为返回值</li>
+            <li>可以动态创建类</li>
+            <li>验证结果: instance.getValue() → ${instance.getValue()}</li>
+            <li>typeof MyClass → ${typeof MyClass}</li>
+            <li>MyClass.name → ${MyClass.name}</li>
+          </ul>
+        </div>
+      `;
+      document.getElementById('code-example').innerHTML = `
+<code>function createClass() {
+  return class {
+    constructor(value) {
+      this.value = value;
+    }
+    getValue() {
+      return this.value;
+    }
+  };
+}
+
+const MyClass = createClass();
+const instance = new MyClass(42);
+instance.getValue();</code>`;
+    }
+  </script>
+</body>
+</html>

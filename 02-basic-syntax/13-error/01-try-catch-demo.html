@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript 错误处理 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript try-catch 错误捕获</h1>
+
+  <div class="note">
+    <h3>try-catch 机制</h3>
+    <ul>
+      <li>try: 包含可能出错的代码</li>
+      <li>catch: 捕获并处理错误</li>
+      <li>主要用于处理运行时错误</li>
+      <li>可以捕获内置错误类型:
+        <ul>
+          <li>ReferenceError: 引用未定义变量</li>
+          <li>TypeError: 类型错误</li>
+          <li>SyntaxError: 语法错误</li>
+          <li>RangeError: 数值超出范围</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h2>try-catch 示例</h2>
+  <pre>
+// 1. 基本 try-catch
+try {
+  // 可能出错的代码
+  const result = riskyOperation();
+  console.log(result);
+} catch (error) {
+  // 错误处理
+  console.error('捕获到错误:', error.message);
+} finally {
+  // 无论是否出错都会执行
+  console.log('操作完成');
+}
+
+// 2. 自定义错误
+function validateInput(input) {
+  if (!input) {
+    throw new Error('输入不能为空');
+  }
+  if (input.length < 5) {
+    throw new Error('输入长度不能小于5');
+  }
+}
+
+// 3. 不同类型的错误
+try {
+  // ReferenceError
+  console.log(undefinedVariable);
+} catch (error) {
+  console.log('ReferenceError:', error.message);
+}
+
+try {
+  // TypeError
+  null.function();
+} catch (error) {
+  console.log('TypeError:', error.message);
+}
+    </pre>
+
+  <script>
+    // 测试函数
+    function testTryCatch() {
+      let output = '';
+
+      // 1. 捕获未定义函数错误
+      output += '<div class="output-box">';
+      output += '<h3>捕获未定义函数错误</h3>';
+      try {
+        const result = riskyOperation(); // 未定义函数
+        output += `<p class="success">结果: ${result}</p>`;
+      } catch (error) {
+        output += `<p class="error">捕获到错误: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      // 2. 捕获引用错误
+      output += '<div class="output-box">';
+      output += '<h3>捕获引用错误</h3>';
+      try {
+        console.log(undefinedVariable);
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      // 3. 捕获类型错误
+      output += '<div class="output-box">';
+      output += '<h3>捕获类型错误</h3>';
+      try {
+        null.function();
+      } catch (error) {
+        output += `<p class="error">${error.name}: ${error.message}</p>`;
+      }
+      output += '</div>';
+
+      return output;
+    }
+
+    document.write(testTryCatch());
+  </script>
+</body>
+
+</html>

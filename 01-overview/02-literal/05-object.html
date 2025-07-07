@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Literal Demo</title>
+</head>
+<body>
+    <button onclick="showObject()">Show Object</button>
+    <p id="demo"></p>
+    <script>
+        function showObject() {
+            const person = {
+                name: "John",
+                age: 30,
+                city: "New York"
+            };
+            document.getElementById("demo").innerHTML = 
+                `Name: ${person.name}, Age: ${person.age}, City: ${person.city}`;
+        }
+    </script>
+</body>
+</html>

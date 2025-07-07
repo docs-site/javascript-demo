@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript函数基础</title>
+</head>
+<body>
+    <h1>JavaScript函数基础演示</h1>
+    
+    <button onclick="showDemo()">运行示例</button>
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        function showDemo() {
+            // 1. 定义函数
+            function greet(name) {
+                return `你好，${name}！`;
+            }
+            
+            // 2. 调用函数
+            const greeting = greet('张三');
+            
+            // 3. 显示结果
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h3>函数定义与调用:</h3>
+                <p>${greeting}</p>
+                <p>函数已成功定义并调用</p>
+            `;
+            
+            // 4. 控制台输出
+            console.log('函数定义:', greet);
+            console.log('函数调用结果:', greeting);
+        }
+    </script>
+</body>
+</html>

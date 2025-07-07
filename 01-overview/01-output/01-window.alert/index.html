@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>window.alert示例</title>
+</head>
+<body>
+    <h1>window.alert用法示例</h1>
+    
+    <button onclick="showBasicAlert()">基本alert</button>
+    <button onclick="showVariableAlert()">变量alert</button>
+    <button onclick="showMultiLineAlert()">多行alert</button>
+
+    <script>
+        function showBasicAlert() {
+            window.alert("这是一个基本的警告框");
+        }
+
+        function showVariableAlert() {
+            const name = "张三";
+            const age = 25;
+            window.alert(`姓名: ${name}\n年龄: ${age}`);
+        }
+
+        function showMultiLineAlert() {
+            window.alert("第一行文本\n第二行文本\n第三行文本");
+        }
+    </script>
+</body>
+</html>

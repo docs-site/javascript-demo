@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript String Indexing Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript String Indexing</h1>
+
+  <div class="note">
+    <h3>注意事项</h3>
+    <ul>
+      <li>字符串索引从0开始</li>
+      <li>可以使用[]或charAt()访问特定位置的字符</li>
+      <li>length属性获取字符串长度</li>
+      <li>substring()和slice()可以提取子字符串</li>
+      <li>字符串是不可变的，索引访问是只读的</li>
+    </ul>
+  </div>
+
+  <h2>基本索引操作</h2>
+  <pre>
+const str = "Hello JavaScript";
+
+// 使用[]访问字符
+console.log(str[0]);  // 'H'
+console.log(str[6]);  // 'J'
+
+// 使用charAt()
+console.log(str.charAt(1));  // 'e'
+
+// 获取字符串长度
+console.log(str.length);  // 16
+    </pre>
+
+  <h2>子字符串操作</h2>
+  <pre>
+// substring(start, end)
+console.log(str.substring(6, 10));  // 'Java'
+
+// slice(start, end) 
+console.log(str.slice(-6));  // 'Script'
+
+// 负索引
+console.log(str.slice(6, -6));  // 'Java'
+    </pre>
+
+  <script>
+    // 实际执行代码
+    const str = "Hello JavaScript";
+
+    console.log("Basic Indexing:");
+    console.log(str[0]);
+    console.log(str[6]);
+    console.log(str.charAt(1));
+    console.log(str.length);
+
+    console.log("Substring Operations:");
+    console.log(str.substring(6, 10));
+    console.log(str.slice(-6));
+    console.log(str.slice(6, -6));
+
+    // 输出到页面
+    document.write(`
+      <div class="output-box">
+        <h3>原始字符串</h3>
+        <p>${str}</p>
+      </div>
+      <div class="output-box">
+        <h3>字符索引</h3>
+        <p>str[0]: ${str[0]}</p>
+      </div>
+      <div class="output-box">
+        <h3>子字符串</h3>
+        <p>str.substring(6,10): ${str.substring(6, 10)}</p>
+      </div>
+      <div class="output-box">
+        <h3>负索引切片</h3>
+        <p>str.slice(-6): ${str.slice(-6)}</p>
+      </div>
+    `);
+  </script>
+</body>
+
+</html>

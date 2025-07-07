@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未声明变量Demo</title>
+</head>
+
+<body>
+  <h1>未声明变量赋值演示</h1>
+  <p>如果把值赋给尚未声明的变量，该变量将被自动作为 window 的一个属性。</p>
+
+  <p>例如这条语句：carname="Volvo";<br>将声明 window 的一个属性 carname。</p>
+
+  <p>非严格模式下给未声明变量赋值创建的全局变量，是全局对象的可配置属性，可以删除。</p>
+
+  <button onclick="showDemo()">运行示例</button>
+  <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+  <script>
+    function showDemo() {
+      let html = '';
+
+      try {
+        // 1. 尝试给未声明的变量赋值
+        undeclaredVar = "这是一个未声明的变量";
+
+        html += `<h3>未声明变量赋值结果:</h3>`;
+        html += `<p>undeclaredVar: ${undeclaredVar}</p>`;
+        html += `<p>typeof undeclaredVar: ${typeof undeclaredVar}</p>`;
+        html += `<p>window.undeclaredVar: ${window.undeclaredVar}</p>`;
+        html += `<p>严格模式下会报错</p>`;
+        html += `<h4>说明:</h4>`;
+        html += `<p>1. 给未声明变量赋值会自动成为window的属性</p>`;
+        html += `<p>2. 非严格模式下创建的全局变量是可配置属性，可以删除</p>`;
+        html += `<p>3. 例如: carname="Volvo" 会创建 window.carname</p>`;
+
+        console.log('未声明变量:', undeclaredVar);
+      } catch (e) {
+        html += `<h3>错误:</h3>`;
+        html += `<p style="color:red">${e.message}</p>`;
+        console.error('错误:', e);
+      }
+
+      document.getElementById('output').innerHTML = html;
+    }
+  </script>
+</body>
+
+</html>

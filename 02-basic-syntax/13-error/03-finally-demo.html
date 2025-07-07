@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript finally 语句 Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .note {
+      background: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 20px 0;
+    }
+
+    .output-box {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .finally {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript finally 语句</h1>
+
+  <div class="note">
+    <h3>finally 语句</h3>
+    <ul>
+      <li>无论是否发生错误都会执行</li>
+      <li>常用于资源清理工作</li>
+      <li>执行顺序:
+        <ul>
+          <li>try → catch → finally</li>
+          <li>try → finally (无错误时)</li>
+        </ul>
+      </li>
+      <li>即使有return语句，finally也会执行</li>
+    </ul>
+  </div>
+
+  <h2>finally 示例</h2>
+  <pre>
+// 1. 基本 finally 使用
+function processFile() {
+  let file = openFile();
+  try {
+    // 处理文件
+    if(Math.random() > 0.5) {
+      throw new Error('随机错误');
+    }
+    console.log('文件处理成功');
+  } catch (error) {
+    console.error('处理文件出错:', error.message);
+  } finally {
+    closeFile(file);
+    console.log('文件已关闭');
+  }
+}
+
+// 2. finally 与 return
+function exampleWithReturn() {
+  try {
+    return "try 返回值";
+  } finally {
+    console.log('finally 执行');
+  }
+}
+    </pre>
+
+  <script>
+    // 模拟文件操作
+    function openFile() {
+      return { name: "test.txt", status: "open" };
+    }
+
+    function closeFile(file) {
+      file.status = "closed";
+    }
+
+    // 测试函数
+    function testFinally() {
+      let output = '';
+
+      // 1. 基本 finally 示例
+      output += '<div class="output-box">';
+      output += '<h3>基本 finally 示例</h3>';
+      let file = openFile();
+      try {
+        if (Math.random() > 0.5) {
+          throw new Error('随机错误');
+        }
+        output += '<p class="success">文件处理成功</p>';
+      } catch (error) {
+        output += `<p class="error">处理文件出错: ${error.message}</p>`;
+      } finally {
+        closeFile(file);
+        output += `<p class="finally">文件状态: ${file.status}</p>`;
+      }
+      output += '</div>';
+
+      // 2. finally 与 return
+      output += '<div class="output-box">';
+      output += '<h3>finally 与 return</h3>';
+      function exampleWithReturn() {
+        try {
+          return "try 返回值";
+        } finally {
+          output += '<p class="finally">finally 块执行了</p>';
+        }
+      }
+      output += `<p>函数返回值: ${exampleWithReturn()}</p>`;
+      output += '</div>';
+
+      return output;
+    }
+
+    document.write(testFinally());
+  </script>
+</body>
+
+</html>
